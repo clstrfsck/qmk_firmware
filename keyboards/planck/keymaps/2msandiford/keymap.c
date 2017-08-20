@@ -42,7 +42,7 @@ enum planck_keycodes {
   EXT_PLV
 };
 
-// Mnemonics that fit better into the keymap
+// Mnemonics that fit better into the keymap - not used any more
 #define KC_NUTI         S(KC_NUHS)              /* Non-US Tilde (Shift+Non-US Hash)      */
 #define KC_NUPI         S(KC_NUBS)              /* Non-US Pipe  (Shift+Non-US Backslash) */
 
@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Del   |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |    _   |    +   |    {   |    }   |   |    |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  | ISO ~  | ISO |  |        |        |        |
+ *|  Ins   |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  |  PrtSc |ScrlLock|  Pause |   App  |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |        |        |        |        |                 |        |  Home  |  PgDn  |  PgUp  |  End   |
  *`-----------------------------------------------------------------------------------------------------------'
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = {
   {KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC },
   {KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE },
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUTI, KC_NUPI, _______, _______, _______ },
+  {KC_INS,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, KC_APP,  _______ },
   {_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END  }
 },
 
@@ -130,18 +130,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *,-----------------------------------------------------------------------------------------------------------.
  *|    `   |    1   |    2   |    3   |    4   |    5   |    6   |    7   |    8   |    9   |    0   |  Bksp  |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Del   |   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |    -   |    =   |    [   |    ]   |   \    |
+ *|CapsLock|   F1   |   F2   |   F3   |   F4   |   F5   |   F6   |    -   |    =   |    [   |    ]   |   \    |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  | ISO #  | ISO /  |        |        |        |
+ *|        |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  |  PrtSc |ScrlLock|  Pause |   App  |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |        |        |        |        |                 |        |  Next  |  Vol-  |  Vol+  |  Play  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_RAISE] = {
   {KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC },
-  {KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS },
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, _______, _______, _______ },
-  {_______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY }
+  {KC_CAPS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS },
+  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, KC_APP,  _______ },
+  {_______, KC_RCTL, KC_RALT, KC_RGUI, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY }
 },
 
 /* Plover layer (http://opensteno.org)
@@ -188,6 +188,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
+/*
+  Added to allow proper layer handling for LOWER/RAISE/ADJUST,
+  even when using LT(...) macros.
+*/
+uint32_t layer_state_set_kb(uint32_t state) {
+  bool lower_on = (state & (1UL << _LOWER)) != 0;
+  bool raise_on = (state & (1UL << _RAISE)) != 0;
+  if (lower_on && raise_on) {
+    return state | (1UL << _ADJUST);
+  } else {
+    return state & ~(1UL << _ADJUST);
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
@@ -211,20 +225,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
       break;

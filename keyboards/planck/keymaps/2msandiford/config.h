@@ -39,4 +39,10 @@
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
+// Have left and right side modifiers in different layers on the same keys
+#define PREVENT_STUCK_MODIFIERS
+
+// Not sure why this isn't default
+#define PERMISSIVE_HOLD
+
 #endif

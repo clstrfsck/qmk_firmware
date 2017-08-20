@@ -84,12 +84,10 @@ int main(int argc, char ** argv) {
     for (int layer = 0; layer < 7; ++layer) {
         for (int row = 0; row < MATRIX_ROWS; ++row) {
             for (int col = 0; col < MATRIX_COLS; ++col) {
-                uint16_t keycode = keymaps[layer][row][col];
+                uint16_t keycode = keymaps[layer][row][col] & 0xFF;
                 size_t found_index = find(keycode, tkl_keys, num_keys);
                 if (found_index < num_keys)
                     foundkeys[found_index] = true;
-                else
-                    printf("Can't find planck %d (%04X)\n", keycode, keycode);
             }
         }
     }
