@@ -45,7 +45,10 @@
 // Not sure why this isn't default
 #define PERMISSIVE_HOLD
 
+<<<<<<< HEAD
 // Enable breathing
 #define BACKLIGHT_BREATHING
 
+=======
+>>>>>>> Added in extra keys.
 #endif
