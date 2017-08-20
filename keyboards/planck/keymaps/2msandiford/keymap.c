@@ -58,7 +58,6 @@ enum planck_keycodes {
 #define MMOUSE          MO(_MOUSE)              /* Momentary use of _MOUSE layer */
 
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
