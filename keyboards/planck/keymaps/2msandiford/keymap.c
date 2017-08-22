@@ -188,18 +188,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
-/*
-  Added to allow proper layer handling for LOWER/RAISE/ADJUST,
-  even when using LT(...) macros.
-*/
+#define LOWER_AND_RAISE ((1UL << _LOWER) | (1UL << _RAISE))
+
+/* Added to allow layer handling for LOWER/RAISE/ADJUST,
+ * even when using LT(...) macros.
+ */
 uint32_t layer_state_set_kb(uint32_t state) {
-  bool lower_on = (state & (1UL << _LOWER)) != 0;
-  bool raise_on = (state & (1UL << _RAISE)) != 0;
-  if (lower_on && raise_on) {
-    return state | (1UL << _ADJUST);
+  if ((state & LOWER_AND_RAISE) == LOWER_AND_RAISE) {
+    state |= 1UL << _ADJUST;
   } else {
-    return state & ~(1UL << _ADJUST);
+    state &= ~(1UL << _ADJUST);
   }
+  return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
