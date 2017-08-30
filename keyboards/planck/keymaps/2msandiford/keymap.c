@@ -36,8 +36,6 @@ enum planck_keycodes {
   COLEMAK,
   DVORAK,
   PLOVER,
-  LOWER,
-  RAISE,
   BACKLIT,
   EXT_PLV
 };
@@ -219,22 +217,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DVORAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_DVORAK);
-      }
-      return false;
-      break;
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-      } else {
-        layer_off(_LOWER);
-      }
-      return false;
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-      } else {
-        layer_off(_RAISE);
       }
       return false;
       break;
