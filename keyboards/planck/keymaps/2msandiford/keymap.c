@@ -17,6 +17,7 @@
 
 #include "config.h"
 #include "planck.h"
+#include "mousekey.h"
 #include "action_layer.h"
 
 extern keymap_config_t keymap_config;
@@ -25,6 +26,7 @@ enum planck_layers {
   _QWERTY,
   _COLEMAK,
   _DVORAK,
+  _MOUSE,
   _LOWER,
   _RAISE,
   _PLOVER,
@@ -36,8 +38,15 @@ enum planck_keycodes {
   COLEMAK,
   DVORAK,
   PLOVER,
-  BACKLIT,
-  EXT_PLV
+  EXT_PLV,
+  BR_TOGG,
+  BR_INC,
+  BR_DEC,
+  BR_DEF,
+  MMV_UL,
+  MMV_UR,
+  MMV_DL,
+  MMV_DR
 };
 
 // Mnemonics that fit better into the keymap - not used any more
@@ -48,7 +57,7 @@ enum planck_keycodes {
 #define RSH_ENT         RSFT_T(KC_ENT)          /* Tap for Enter, hold for Shift (right pinky) */
 #define LOWRENT         LT(_LOWER, KC_ENT)      /* Tap for Enter, hold for Lower (left thumb)  */
 #define RAISESC         LT(_RAISE, KC_ESC)      /* Tab for Esc, hold for Raise (right thumb)   */
-
+#define MMOUSE          MO(_MOUSE)              /* Momentary mouse layer                       */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -67,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
   {KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT },
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSH_ENT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {MMOUSE,  KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
 },
 
 /* Colemak
@@ -85,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC },
   {KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT },
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSH_ENT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {MMOUSE,  KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
 },
 
 /* Dvorak
@@ -103,7 +112,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC },
   {KC_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH },
   {KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    RSH_ENT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {MMOUSE,  KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+},
+
+/* Mouse
+ *,-----------------------------------------------------------------------------------------------------------.
+ *| Esc    | BR TOG | BR INC | BR DEC | BR DEF |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
+ *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ *|        | MS BT5 | MS BT4 | MS BT3 | MS BT2 |        |        | MS L   |        | MS R   | MS WHU |        |
+ *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ *|        | BL TOD | BL_INC | BL_DEC |        |        |        | MS DL  | MS D   | MS DR  | MS WHD |        |
+ *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
+ *|        |        |        |        |        | MS BT1 | MS BT1 |        |        |        |        |        |
+ *`-----------------------------------------------------------------------------------------------------------'
+ */
+[_MOUSE] = {
+  {KC_ESC , BR_TOGG, BR_INC,  BR_DEC,  BR_DEF,  XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
+  {_______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, XXXXXXX, KC_MS_R, KC_WH_U, XXXXXXX },
+  {_______, BL_TOGG, BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_D, _______ },
+  {_______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN1, XXXXXXX, _______, _______, _______, _______ }
 },
 
 /* Lower
@@ -220,19 +247,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        // No need for right shift now available on Enter key
-        // register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-      } else {
-        // No need for right shift now available on Enter key
-        // unregister_code(KC_RSFT);
-      }
-      return false;
-      break;
     case PLOVER:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
@@ -261,6 +275,74 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+#if defined(BACKLIGHT_ENABLE) && defined(BACKLIGHT_BREATHING)
+    case BR_TOGG:
+        if (record->event.pressed) {
+            breathing_toggle();
+        }
+        return false;
+        break;
+    case BR_INC:
+        if (record->event.pressed) {
+            breathing_speed_inc(1);
+        }
+        return false;
+        break;
+    case BR_DEC:
+        if (record->event.pressed) {
+            breathing_speed_dec(1);
+        }
+        return false;
+        break;
+    case BR_DEF:
+        if (record->event.pressed) {
+            breathing_defaults();
+        }
+        return false;
+        break;
+#endif
+#ifdef MOUSEKEY_ENABLE
+    case MMV_UL:
+        if (record->event.pressed) {
+            mousekey_on(KC_MS_UP);
+            mousekey_on(KC_MS_LEFT);
+        } else {
+            mousekey_off(KC_MS_UP);
+            mousekey_off(KC_MS_LEFT);
+        }
+        return false;
+        break;
+    case MMV_UR:
+        if (record->event.pressed) {
+            mousekey_on(KC_MS_UP);
+            mousekey_on(KC_MS_RIGHT);
+        } else {
+            mousekey_off(KC_MS_UP);
+            mousekey_off(KC_MS_RIGHT);
+        }
+        return false;
+        break;
+    case MMV_DL:
+        if (record->event.pressed) {
+            mousekey_on(KC_MS_DOWN);
+            mousekey_on(KC_MS_LEFT);
+        } else {
+            mousekey_off(KC_MS_DOWN);
+            mousekey_off(KC_MS_LEFT);
+        }
+        return false;
+        break;
+    case MMV_DR:
+        if (record->event.pressed) {
+            mousekey_on(KC_MS_DOWN);
+            mousekey_on(KC_MS_RIGHT);
+        } else {
+            mousekey_off(KC_MS_DOWN);
+            mousekey_off(KC_MS_RIGHT);
+        }
+        return false;
+        break;
+#endif
   }
   return true;
 }
