@@ -38,8 +38,6 @@ enum planck_keycodes {
     COLEMAK,
     DVORAK,
     PLOVER,
-    LOWER,
-    RAISE,
     MOUSE,
     EXT_PLV,
     BR_TOGG,
@@ -56,6 +54,8 @@ enum planck_keycodes {
 #define LOWRENT         LT(_LOWER, KC_ENT)      /* Tap for Enter, hold for Lower (left thumb)  */
 #define RAISESC         LT(_RAISE, KC_ESC)      /* Tab for Esc, hold for Raise (right thumb)   */
 #define GRVMOUS         LT(_MOUSE, KC_GRV)      /* Tap for Grave, hold for Mouse (left pinky)  */
+#define MLOWR           MO(_LOWER)              /* Momentary "lower"                           */
+#define MRAIS           MO(_RAISE)              /* Momentary "raise"                           */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
   {GRVMOUS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSH_ENT},
-  {RAISE,   KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_APP,  KC_RALT, KC_RCTL, LOWER  }
+  {MRAIS,   KC_LCTL, KC_LALT, KC_LGUI, LOWRENT, KC_SPC,  KC_SPC,  RAISESC, KC_APP,  KC_RALT, KC_RCTL, MLOWR  }
 },
 
 /* Colemak
@@ -210,6 +210,20 @@ float plover_song[][2]     = SONG(PLOVER_SOUND);
 float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
+#define LOWER_AND_RAISE ((1UL << _LOWER) | (1UL << _RAISE))
+
+/* Added to allow layer handling for LOWER/RAISE/ADJUST,
+ * even when using LT(...) macros.
+ */
+uint32_t layer_state_set_kb(uint32_t state) {
+  if ((state & LOWER_AND_RAISE) == LOWER_AND_RAISE) {
+    state |= 1UL << _ADJUST;
+  } else {
+    state &= ~(1UL << _ADJUST);
+  }
+  return state;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case QWERTY:
@@ -227,26 +241,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DVORAK:
         if (record->event.pressed) {
             set_single_persistent_default_layer(_DVORAK);
-        }
-        return false;
-        break;
-    case LOWER:
-        if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
-        break;
-    case RAISE:
-        if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
         }
         return false;
         break;
