@@ -49,14 +49,12 @@ enum planck_keycodes {
   MMV_DR
 };
 
-// Mnemonics that fit better into the keymap - not used any more
-#define KC_NUTI         S(KC_NUHS)              /* Non-US Tilde (Shift+Non-US Hash)      */
-#define KC_NUPI         S(KC_NUBS)              /* Non-US Pipe  (Shift+Non-US Backslash) */
-
 // Tapping/holding
 #define RSH_ENT         RSFT_T(KC_ENT)          /* Tap for Enter, hold for Shift (right pinky) */
 #define LOWRENT         LT(_LOWER, KC_ENT)      /* Tap for Enter, hold for Lower (left thumb)  */
 #define RAISESC         LT(_RAISE, KC_ESC)      /* Tab for Esc, hold for Raise (right thumb)   */
+
+// Layer change
 #define MMOUSE          MO(_MOUSE)              /* Momentary mouse layer                       */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -69,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    Z   |    X   |    C   |    V   |    B   |    N   |    M   |    ,   |    .   |    /   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|   BL   |  Ctrl  |  Alt   |  GUI   |Lowr/Ent|      Space      |Rais/Esc|  Left  |  Down  |   Up   | Right  |
+ *|  Mouse |  Ctrl  |  Alt   |  GUI   |Lowr/Ent|      Space      |Rais/Esc|  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_QWERTY] = {
@@ -87,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    Z   |    X   |    C   |    V   |    B   |    K   |    M   |    ,   |    .   |    /   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Brite |  Ctrl  |  Alt   |  GUI   |Lowr/Ent|      Space      |Rais/Esc|  Left  |  Down  |   Up   | Right  |
+ *|  Mouse |  Ctrl  |  Alt   |  GUI   |Lowr/Ent|      Space      |Rais/Esc|  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_COLEMAK] = {
@@ -105,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    ;   |    Q   |    J   |    K   |    X   |    B   |    M   |    W   |    V   |    Z   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Brite |  Ctrl  |  Alt   |  GUI   | Lower  |      Space      | Raise  |  Left  |  Down  |   Up   | Right  |
+ *|  Mouse |  Ctrl  |  Alt   |  GUI   | Lower  |      Space      | Raise  |  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_DVORAK] = {
@@ -117,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Mouse
  *,-----------------------------------------------------------------------------------------------------------.
- *| Esc    | BR TOG | BR INC | BR DEC | BR DEF |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
+ *|        | BR TOG | BR INC | BR DEC | BR DEF |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        | MS BT5 | MS BT4 | MS BT3 | MS BT2 |        |        | MS L   |        | MS R   | MS WHU |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
@@ -127,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_MOUSE] = {
-  {KC_ESC , BR_TOGG, BR_INC,  BR_DEC,  BR_DEF,  XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
+  {_______, BR_TOGG, BR_INC,  BR_DEC,  BR_DEF,  XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
   {_______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, XXXXXXX, KC_MS_R, KC_WH_U, XXXXXXX },
   {_______, BL_TOGG, BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_D, _______ },
   {_______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN1, XXXXXXX, _______, _______, _______, _______ }
@@ -256,6 +254,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_RAISE);
         layer_off(_LOWER);
         layer_off(_ADJUST);
+        layer_off(_MOUSE);
         layer_on(_PLOVER);
         if (!eeconfig_is_enabled()) {
             eeconfig_init();
