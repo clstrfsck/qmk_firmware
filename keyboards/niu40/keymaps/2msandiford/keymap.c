@@ -116,19 +116,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Mouse
  *,-----------------------------------------------------------------------------------------------------------.
- *|        | BR TOG | BR INC | BR DEC | BR DEF |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
+ *|        |        |        |        |        |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        | MS BT5 | MS BT4 | MS BT3 | MS BT2 |        |        | MS L   |        | MS R   | MS WHU |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        | BL TOG | BL_INC | BL_DEC |        |        |        | MS DL  | MS D   | MS DR  | MS WHD |        |
+ *|        |        |        |        |        |        |        | MS DL  | MS D   | MS DR  | MS WHD |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |        |        |        |        | MS BT1 | MS BT1 |        |        |        |        |        |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_MOUSE] = {
-  {_______, BR_TOGG, BR_INC,  BR_DEC,  BR_DEF,  XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
+  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
   {_______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, XXXXXXX, KC_MS_R, KC_WH_U, XXXXXXX },
-  {_______, BL_TOGG, BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_D, _______ },
+  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_D, _______ },
   {_______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN1, XXXXXXX, _______, _______, _______, _______ }
 },
 
@@ -140,14 +140,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Ins   |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  |  PrtSc |ScrlLock|  Pause |   App  |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |        |        |        |        |                 |        |  Home  |  PgDn  |  PgUp  |  End   |
+ *|        |        |        |        |        |                 |        |  Next  |  Vol-  |  Vol+  |  Play  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_LOWER] = {
   {KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC },
   {KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE },
   {KC_INS,  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, KC_APP,  _______ },
-  {XXXXXXX, KC_RCTL, KC_RALT, KC_RGUI, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY }
+  {KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY }
 },
 
 /* Raise
@@ -158,14 +158,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |   F7   |   F8   |   F9   |   F10  |   F11  |   F12  |  PrtSc |ScrlLock|  Pause |   App  |  Mute  |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |        |        |        |        |                 |        |  Next  |  Vol-  |  Vol+  |  Play  |
+ *|        |        |        |        |        |                 |        |  Home  |  PgDn  |  PgUp  |  End   |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_RAISE] = {
   {KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC },
   {KC_CAPS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS },
   {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, KC_PAUS, KC_APP,  KC_MUTE },
-  {XXXXXXX, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END  }
+  {_______, _______, _______, XXXXXXX, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END  }
 },
 
 /* Plover layer (http://opensteno.org)
@@ -201,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  XXXXXXX, AG_NORM, AG_SWAP, QWERTY,  COLEMAK },
   {RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DVORAK,  PLOVER  },
   {RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX },
-  {RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ }
+  {RESET,   _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______ }
 }
 
 
