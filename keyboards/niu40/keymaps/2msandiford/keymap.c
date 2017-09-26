@@ -68,14 +68,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    Z   |    X   |    C   |    V   |    B   |    N   |    M   |    ,   |    .   |    /   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Ctrl  |  Alt   |  GUI   |  Mouse |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
+ *|  Ctrl  |  Mouse |  Alt   |   GUI  |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_QWERTY] = {
   {KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
   {KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT },
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSH_ENT },
-  {KC_LCTL, KC_LALT, KC_LGUI, MMOUSE,  RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {KC_LCTL, MMOUSE,  KC_LALT, KC_LGUI, RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
 },
 
 /* Colemak
@@ -86,14 +86,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    Z   |    X   |    C   |    V   |    B   |    K   |    M   |    ,   |    .   |    /   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Ctrl  |  Alt   |  GUI   |  Mouse |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
+ *|  Ctrl  |  Mouse |  Alt   |   GUI  |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_COLEMAK] = {
   {KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC },
   {KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT },
   {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSH_ENT },
-  {KC_LCTL, KC_LALT, KC_LGUI, MMOUSE,  RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {KC_LCTL, MMOUSE,  KC_LALT, KC_LGUI, RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
 },
 
 /* Dvorak
@@ -104,31 +104,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|  Shift |    ;   |    Q   |    J   |    K   |    X   |    B   |    M   |    W   |    V   |    Z   |Shft/Ent|
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Ctrl  |  Alt   |  GUI   |  Mouse |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
+ *|  Ctrl  |  Mouse |  Alt   |   GUI  |  Raise |      Space      |  Lower |  Left  |  Down  |   Up   | Right  |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_DVORAK] = {
   {KC_ESC,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC },
   {KC_TAB,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH },
   {KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    RSH_ENT },
-  {KC_LCTL, KC_LALT, KC_LGUI, MMOUSE,  RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
+  {KC_LCTL, MMOUSE,  KC_LALT, KC_LGUI, RAISE,   KC_SPC,  KC_SPC,  LOWER,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT }
 },
 
 /* Mouse
  *,-----------------------------------------------------------------------------------------------------------.
- *|        |        |        |        |        |        |        | MS UL  | MS U   | MS UR  | MS WHL | MS WHR |
+ *|        |        |        |        |        |        |        | MS UL  | MS U   | MS UR  | MS WHU |  Del   |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        | MS BT5 | MS BT4 | MS BT3 | MS BT2 |        |        | MS L   |        | MS R   | MS WHU |        |
+ *|        | MS BT5 | MS BT4 | MS BT3 | MS BT2 |        |        | MS L   |        | MS R   | MS WHD |        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |        |        |        |        |        |        | MS DL  | MS D   | MS DR  | MS WHD |        |
+ *|        |        |        |        |        |        |        | MS DL  | MS D   | MS DR  | MS WHL | MS WHR |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |        |        |        |        | MS BT1 | MS BT1 |        |        |        |        |        |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_MOUSE] = {
-  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_L, KC_WH_R },
-  {_______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, XXXXXXX, KC_MS_R, KC_WH_U, XXXXXXX },
-  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_D, _______ },
+  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_U, KC_DEL  },
+  {_______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, XXXXXXX, KC_MS_R, KC_WH_D, XXXXXXX },
+  {_______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_L, KC_WH_R },
   {_______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN1, XXXXXXX, _______, _______, _______, _______ }
 },
 
@@ -188,24 +188,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  *,-----------------------------------------------------------------------------------------------------------.
- *|RGB togg|RGB mode|BL togg |BL step |BR togg | BR inc | BR dec |        |AG norm |AG swap | Qwerty |Colemak |
+ *|RGB togg|RGB mode|BL togg |BL step |BR togg | BR inc | BR dec |        | Qwerty |Colemak | Dvorak | Plover |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|RGB hue+|RGB hue-|RGB sat+|RGB sat-|RGB val+|RGB val-|        |        |        |        | Dvorak | Plover |
+ *|RGB hue+|RGB hue-|RGB sat+|RGB sat-|RGB val+|RGB val-|        |        | AU on  | AU off |AG Norm |AG Swap |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|RGB plai|RGB brea|RGB rain|RGB swir|RGB snak|RGB knig|RGB xmas|RGB grad|        |        |        |        |
+ *|RGB plai|RGB brea|RGB rain|RGB swir|RGB snak|RGB knig|RGB xmas|RGB grad| Mus on |Mus off |Mus Mode|        |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|  Reset |        |        |        |        |                 |        |        |        |        |        |
+ *|  Reset |        |        |        |        |                 |        |MIDI on |MIDI off|Mus Voi-|Mus Voi+|
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
-  {RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  XXXXXXX, AG_NORM, AG_SWAP, QWERTY,  COLEMAK },
-  {RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DVORAK,  PLOVER  },
-  {RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX },
-  {RESET,   _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______ }
+  {RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  XXXXXXX, QWERTY,  COLEMAK, DVORAK,  PLOVER  },
+  {RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP },
+  {RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, MU_ON,   MU_OFF,  MU_MOD,  XXXXXXX },
+  {RESET,   _______, _______, XXXXXXX, _______, _______, _______, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN  }
 }
 
-
 };
+
+#ifdef AUDIO_ENABLE
+  float plover_song[][2]     = SONG(PLOVER_SOUND);
+  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+#endif
 
 #define LOWER_AND_RAISE ((1UL << _LOWER) | (1UL << _RAISE))
 
@@ -243,6 +247,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case PLOVER:
       if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+        stop_all_notes();
+        PLAY_SONG(plover_song);
+#endif
         layer_off(_RAISE);
         layer_off(_LOWER);
         layer_off(_ADJUST);
@@ -259,6 +267,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case EXT_PLV:
       if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+        PLAY_SONG(plover_gb_song);
+#endif
         layer_off(_PLOVER);
       }
       return false;
