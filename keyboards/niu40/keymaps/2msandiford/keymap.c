@@ -206,6 +206,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+#ifdef AUDIO_ENABLE
+  float plover_song[][2]     = SONG(PLOVER_SOUND);
+  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+#endif
+
 #define LOWER_AND_RAISE ((1UL << _LOWER) | (1UL << _RAISE))
 
 /* Added to allow layer handling for LOWER/RAISE/ADJUST,
@@ -242,6 +247,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case PLOVER:
       if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+        stop_all_notes();
+        PLAY_SONG(plover_song);
+#endif
         layer_off(_RAISE);
         layer_off(_LOWER);
         layer_off(_ADJUST);
@@ -258,6 +267,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case EXT_PLV:
       if (record->event.pressed) {
+#ifdef AUDIO_ENABLE
+        PLAY_SONG(plover_gb_song);
+#endif
         layer_off(_PLOVER);
       }
       return false;
