@@ -1,8 +1,6 @@
 #ifndef NIU40_H
 #define NIU40_H
 
-#include QMK_SUBPROJECT_H
-
 #include "quantum.h"
 
 #define NIU40_GRID( \
@@ -20,5 +18,7 @@
 
 #define KEYMAP NIU40_GRID
 #define LAYOUT_ortho_4x12 NIU40_GRID
+
+#include "rev1.h"
 
 #endif
