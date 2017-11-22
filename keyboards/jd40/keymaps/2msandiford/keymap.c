@@ -1,4 +1,5 @@
 #include "jd40.h"
+#include "config.h"
 #include "action_layer.h"
 
 /* Copyright 2015-2017 Jack Humbert
@@ -58,65 +59,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = KEYMAP_RAW(
     KC_ESC, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSLS,
     KC_TAB,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_ENT,
-    KC_LSFT,      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, RSH_ENT,
-    KC_LCTL,KC_LALT,KC_LGUI,RAISE,  KC_SPC,         KC_SPC,       LOWER,    KC_LEFT,KC_DOWN,KC_RGHT
-  )
-},
+    KC_LSFT,      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, RSH_UP,
+    KC_LCTL,KC_LALT,KC_LGUI,RAISE,  KC_BSPC,        KC_SPC,       LOWER,    KC_LEFT,KC_DOWN,KC_RGHT
+  ),
 
 /* Lower
  * ,-----------------------------------------------------------------------------------------------.
  * |   ~   |   !   |   @   |   #   |   $   |   %   |   ^   |   &   |   *   |   (   |   )   |   ?   |
  * |-----------------------------------------------------------------------------------------------|
- * |         |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |   _   |   +   |   {   |      }      |
+ * |  PrtSc  |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |   _   |   +   |   {   |      }      |
  * |-----------------------------------------------------------------------------------------------|
- * |             |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  | PrtSc | SLock | Pause |   App   |
+ * |             |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |       |   :   |   "   |   App   |
  * |-----------------------------------------------------------------------------------------------|
  * |       |       |       |         |             |             |         | Vol-  | Vol+  | Play  |
  * `-----------------------------------------------------------------------------------------------'
  */
 [_LOWER] = KEYMAP_RAW(
     KC_TILD,KC_EXLM,KC_AT,  KC_HASH,KC_DLR, KC_PERC,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_QUES,
-    _______,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,
-    _______,      KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,KC_SLCK,KC_PAUS,KC_APP,
+    KC_PSCR,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,
+    _______,      KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, XXXXXXX,KC_COLN,KC_DQUO,KC_APP,
     _______,_______,_______,_______,  _______,      _______,      _______,  KC_VOLD,KC_VOLU,KC_MPLY
-  )
-},
+  ),
 
 /* Raise
  * ,-----------------------------------------------------------------------------------------------.
  * |   `   |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |   9   |   0   |   /   |
  * |-----------------------------------------------------------------------------------------------|
- * |         |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |   -   |   =   |   [   |      ]      |
+ * |  PrtSc  |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |   -   |   =   |   [   |      ]      |
  * |-----------------------------------------------------------------------------------------------|
- * |             |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  | PrtSc |ScrlLck| Pause |  PgUp   |
+ * |             |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |       |   ;   |   '   |  PgUp   |
  * |-----------------------------------------------------------------------------------------------|
  * |       |       |       |         |             |             |         | Home  | PgDn  |  End  |
  * `-----------------------------------------------------------------------------------------------'
  */
 [_RAISE] = KEYMAP_RAW(
     KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_SLSH,
-    _______,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_MINS,KC_EQL, KC_LBRC,KC_RBRC,
-    _______,      KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,KC_SLCK,KC_PAUS,KC_PGUP,
+    KC_PSCR,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_MINS,KC_EQL, KC_LBRC,KC_RBRC,
+    _______,      KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, XXXXXXX,KC_SCLN,KC_QUOT,KC_PGUP,
     _______,_______,_______,_______,  _______,      _______,      _______,  KC_HOME,KC_PGDN,KC_END
-  )
-},
+  ),
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------------------.
- * |       |       |BLtogg |BLstep |BRtogg | BRinc | BRdec |       |       |       |       |       |
+ * |AG Norm|AG Swap|BLtogg |BLstep |BRtogg | BRinc | BRdec |       |       |       |  Ins  |  Del  |
  * |-----------------------------------------------------------------------------------------------|
- * |         |       |       |       |       |       |       |       |AG Norm|AG Swap|             |
+ * | CapsLck |       |       |       |       |       |       |       |       |       |             |
  * |-----------------------------------------------------------------------------------------------|
  * |             |       |       |       |       |       |       |       |       |       |         |
  * |-----------------------------------------------------------------------------------------------|
- * | Reset |       |       |         |             |             |         |       |       |       |
+ * |       |       |       |         |             |             |         |       |       | Reset |
  * `-----------------------------------------------------------------------------------------------'
  */
 [_ADJUST] = KEYMAP_RAW(
-    XXXXXXX,XXXXXXX,BL_TOGG,BL_STEP,BR_TOGG,BR_INC, BR_DEC, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-    XXXXXXX,  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,AG_NORM,AG_SWAP,XXXXXXX,
-    XXXXXXX,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-    RESET,  _______,_______,XXXXXXX,  _______,      _______,      _______,  _______,_______,_______
+    AG_NORM,AG_SWAP,BL_TOGG,BL_STEP,BR_TOGG,BR_INC, BR_DEC, XXXXXXX,XXXXXXX,XXXXXXX,KC_INS, KC_DEL,
+    KC_CAPS,  XXXXXXX,KC_SLCK,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+    _______,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+    _______,_______,_______,_______,  _______,      _______,      _______,  XXXXXXX,XXXXXXX,RESET
   )
 };
 
