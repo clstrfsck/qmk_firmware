@@ -53,9 +53,9 @@ enum planck_keycodes {
 #define RSH_ENT         RSFT_T(KC_ENT)          /* Tap for Enter, hold for Shift (right pinky) */
 
 // Layer change
-#define LOWER           MO(_LOWER)              /* Tap for Enter, hold for Lower (left thumb)  */
-#define RAISE           MO(_RAISE)              /* Tab for Esc, hold for Raise (right thumb)   */
-#define MMOUSE          MO(_MOUSE)              /* Momentary mouse layer                       */
+#define LOWER           MO(_LOWER)              /* Momentary use of _LOWER layer */
+#define RAISE           MO(_RAISE)              /* Momentary use of _RAISE layer */
+#define MMOUSE          MO(_MOUSE)              /* Momentary use of _MOUSE layer */
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

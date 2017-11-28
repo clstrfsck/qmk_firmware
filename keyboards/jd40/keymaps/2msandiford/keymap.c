@@ -39,8 +39,8 @@ enum planck_keycodes {
 #define RSH_UP          RSFT_T(KC_UP)           /* Tap for Up, hold for Shift (right pinky) */
 
 // Layer change
-#define LOWER           MO(_LOWER)              /* Tap for Enter, hold for Lower (left thumb)  */
-#define RAISE           MO(_RAISE)              /* Tab for Esc, hold for Raise (right thumb)   */
+#define LOWER           MO(_LOWER)              /* Momentary use of _LOWER layer */
+#define RAISE           MO(_RAISE)              /* Momentary use of _RAISE layer */
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -53,14 +53,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-----------------------------------------------------------------------------------------------|
  * |    Shift    |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   | Shft/Up |
  * |-----------------------------------------------------------------------------------------------|
- * | Ctrl  | Meta  | Super |  Raise  |    Space    |    Space    |  Lower  | Left  | Down  | Right |
+ * | Ctrl  | Meta  | Super |  Raise  |    BkSpc    |    Space    |  Lower  | Left  | Down  | Right |
  * `-----------------------------------------------------------------------------------------------'
  */
 [_QWERTY] = KEYMAP_RAW(
     KC_ESC, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSLS,
     KC_TAB,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_ENT,
     KC_LSFT,      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, RSH_UP,
-    KC_LCTL,KC_LALT,KC_LGUI,RAISE,  KC_BSPC,        KC_SPC,       LOWER,    KC_LEFT,KC_DOWN,KC_RGHT
+    KC_LCTL,KC_LALT,KC_LGUI,RAISE,    KC_BSPC,      KC_SPC,       LOWER,    KC_LEFT,KC_DOWN,KC_RGHT
   ),
 
 /* Lower
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------------------.
  * |AG Norm|AG Swap|BLtogg |BLstep |BRtogg | BRinc | BRdec |       |       |       |  Ins  |  Del  |
  * |-----------------------------------------------------------------------------------------------|
- * | CapsLck |       |       |       |       |       |       |       |       |       |             |
+ * | CapsLck |       |ScrlLck|       |       |       |       |       |       |       |             |
  * |-----------------------------------------------------------------------------------------------|
  * |             |       |       |       |       |       |       |       |       |       |         |
  * |-----------------------------------------------------------------------------------------------|
