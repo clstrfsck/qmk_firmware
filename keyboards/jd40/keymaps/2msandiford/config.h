@@ -21,4 +21,7 @@
 // Not sure why this isn't default
 #define PERMISSIVE_HOLD
 
+// Also breathing
+#define BACKLIGHT_BREATHING
+
 #endif
