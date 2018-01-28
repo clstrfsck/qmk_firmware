@@ -143,19 +143,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case BR_INC:
         if (record->event.pressed) {
-            breathing_speed_inc(1);
+            breathing_period_inc();
         }
         return false;
         break;
     case BR_DEC:
         if (record->event.pressed) {
-            breathing_speed_dec(1);
+            breathing_period_dec();
         }
         return false;
         break;
     case BR_DEF:
         if (record->event.pressed) {
-            breathing_defaults();
+            breathing_period_default();
         }
         return false;
         break;
