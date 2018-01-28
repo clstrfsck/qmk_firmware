@@ -21,4 +21,6 @@
 
 // place overrides here
 
+#undef BACKLIGHT_BREATHING
+
 #endif
