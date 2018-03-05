@@ -27,5 +27,7 @@ UNICODEMAP_ENABLE  = no
 UNICODE_ENABLE     = no         # Unicode
 VIRTSER_ENABLE     = no         # Virtual serial (required for Steno)
 
+EXTRAFLAGS        += -flto
+
 testmap:	testmap.c keymap.c
 	gcc -O -o testmap -I../../../../quantum -I../../../../tmk_core/common -I../../../../quantum/audio -I../../../../quantum/process_keycode -I../.. testmap.c keymap.c
