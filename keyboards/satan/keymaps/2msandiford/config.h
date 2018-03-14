@@ -26,6 +26,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 
+/* Grave Esc stuff. */
+#define GRAVE_ESC_ALT_OVERRIDE
+#define GRAVE_ESC_CTRL_OVERRIDE
+
 /* Don't need this, as all modifiers present on all layers. */
 #define PREVENT_STUCK_MODIFIERS
 
