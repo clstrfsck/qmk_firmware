@@ -29,13 +29,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------------------------------------------------------------------------------------------.
  * |  Esc  |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |   9   |   0   |   -   |   =   |   \   |   `   |  Ins  |
  * |-------------------------------------------------------------------------------------------------------------------------------|
- * |    Tab    |   Q   |   W   |   E   |   R   |   T   |   Y   |   U   |   I   |   O   |   P   |   [   |   ]   |   Backs   |  Del  |
+ * |    Tab    |   Q   |   W   |   E   |   R   |   T   |   Y   |   U   |   I   |   O   |   P   |   [   |   ]   | Backspace |  Del  |
  * |-------------------------------------------------------------------------------------------------------------------------------|
- * |      Caps   |   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   ;   |   '   |       |  Enter  |  PgUp |
+ * |    Caps     |   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   ;   |   '   |       |  Enter  | PgUp  |
  * |-------------------------------------------------------------------------------------------------------------------------------|
- * |  Shift  |       |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |   /   |    Shift    |  Up   |  PgDn |
+ * |  Shift  |       |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |   /   |    Shift    |  Up   | PgDn  |
  * |-------------------------------------------------------------------------------------------------------------------------------|
- * |   Ctrl  |   Alt   |   Cmd   |                        Space                    |   Cmd   |   Alt   |   | Left  | Down  | Right |
+ * |  Ctrl   |   Alt   |   Cmd   |                      Space                      |   Cmd   |   FN0   |   | Left  | Down  | Right |
  * `-------------------------------------------------------------------------------------------------------------------------------'
  */
 [0] = KEYMAP(                                                       \
@@ -43,13 +43,13 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSPC,    KC_DEL,  \
     KC_CAPS,      KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,XXXXXXX,KC_ENT,   KC_PGUP, \
     KC_LSFT,  XXXXXXX,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,      KC_UP,  KC_PGDN, \
-    KC_LCTL,  KC_LGUI,  KC_LALT,KC_SPC,                                             KC_RALT,KC_FN0,XXXXXXX, KC_LEFT,KC_DOWN,KC_RGHT  \
+    KC_LCTL,  KC_LGUI,  KC_LALT,KC_SPC,                                             KC_RALT,KC_FN0 ,XXXXXXX,KC_LEFT,KC_DOWN,KC_RGHT  \
     ),
 [1] = KEYMAP(                                                           \
     _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,_______,KC_MUTE, \
     _______,    AG_NORM,AG_SWAP,_______,_______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK,KC_PAUS,_______ ,   _______, \
-    _______,      _______,_______,_______,KC_FN1 ,_______,KC_FN3 ,_______,_______,_______,_______,_______,_______,RESET,    KC_VOLU, \
-    _______,  _______,_______,_______,KC_FN4 ,_______,KC_FN2 ,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,      KC_PGUP,KC_VOLD, \
+    _______,      _______,_______,_______,KC_FN3 ,_______,KC_FN4 ,_______,_______,_______,_______,_______,_______,RESET,    KC_VOLU, \
+    _______,  _______,_______,_______,KC_FN2 ,_______,KC_FN1 ,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,      KC_PGUP,KC_VOLD, \
     _______,  _______,  _______,  _______,                                          _______,_______,_______,KC_HOME,KC_PGDN,KC_END   \
     ),
 };
@@ -57,10 +57,10 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t fn_actions[] = {
     [0] = ACTION_LAYER_MOMENTARY(1),
 
-    [1] = ACTION_USAGE_CONSUMER(0x1B4), // File browser
-    [2] = ACTION_USAGE_CONSUMER(0x196), // Internet browser
+    [1] = ACTION_USAGE_CONSUMER(0x196), // Internet browser
+    [2] = ACTION_USAGE_CONSUMER(0x1A0), // Command line processor
     [3] = ACTION_USAGE_CONSUMER(0x1A6), // Integrated help center
-    [4] = ACTION_USAGE_CONSUMER(0x1A0), // Command line processor
+    [4] = ACTION_USAGE_CONSUMER(0x1B4), // File browser
 };
 
 /* custom action function */
