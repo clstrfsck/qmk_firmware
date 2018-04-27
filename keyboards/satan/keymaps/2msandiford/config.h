@@ -37,6 +37,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 // Enable breathing
-#define BACKLIGHT_BREATHING
+#undef BACKLIGHT_BREATHING
 
 #endif // CONFIG_USER_H
