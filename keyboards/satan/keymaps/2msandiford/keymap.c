@@ -90,20 +90,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------------------------------.
    * |   `   |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |      Del      |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * | AG Toggle |       |       |       |       |  Ins  |BL Togg| Pg Up |   Up  | Pg Dn | Home  | PrtSc | ScLck |   Pause   |
+   * | AG Toggle |       |       |       |       |  Ins  |BL Togg| Home  |   Up  | Pg Up |       | PrtSc | ScLck |   Pause   |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |             |       |       |       |       |  Del  |BL  Inc| Left  | Down  | Right |  End  |       |                 |
+   * |             |       |       |       |       |  Del  |BL  Inc| Left  | Down  | Right |       |       |                 |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |                 |Ply/Pse| Mute  | Next  | Vol-  | Vol+  |BL  Dec|       |       |       |       |                     |
+   * |                 |Ply/Pse| Mute  | Next  | Vol-  | Vol+  |BL  Dec|  End  |       | Pg Dn |       |                     |
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |         |         |         |                     MS Btn 2                    |         |  Caps   |         |         |
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_OTHER2] = {
     { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL  },
-    { AG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_INS,  BL_TOGG, KC_PGUP, KC_UP,   KC_PGDN, KC_HOME, KC_PSCR, KC_SLCK, KC_PAUS },
-    { OTHER2,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,  BL_INC,  KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  XXXXXXX, XXXXXXX, _______ },
-    { _______, XXXXXXX, KC_MPLY, KC_MUTE, KC_MNXT, KC_VOLD, KC_VOLU, BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
+    { AG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_INS,  BL_TOGG, KC_HOME, KC_UP,   KC_PGUP, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS },
+    { OTHER2,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,  BL_INC,  KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
+    { _______, XXXXXXX, KC_MPLY, KC_MUTE, KC_MNXT, KC_VOLD, KC_VOLU, BL_DEC,  KC_END,  XXXXXXX, KC_PGDN, XXXXXXX, XXXXXXX, _______ },
     { _______, _______, _______, _______, _______, KC_BTN2, _______, _______, _______, _______, _______, KC_CAPS, _______, _______ }
   }
 };
