@@ -171,6 +171,9 @@ void special_control_key(bool pressed, uint16_t code) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static bool sp_del_swapped;
+  static bool sp_bsls_swapped;
+
   switch (keycode) {
     // Make DEL and PAUSE swap with Backslash/Backspace
   case SP_DEL:
