@@ -28,7 +28,10 @@ enum gh60_layers {
 };
 
 enum planck_keycodes {
-  AG_TOGG = SAFE_RANGE,
+  AG_TOGG = SAFE_RANGE, // Toggle Alt and Gui swap
+  BB_TOGG,              // Toggle Backslash and Backspace swap
+  SP_DEL,
+  SP_PAUS,
   MMV_UL,
   MMV_UR,
   MMV_DL,
@@ -50,11 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |    Tab    |   Q   |   W   |   E   |   R   |   T   |   Y   |   U   |   I   |   O   |   P   |   [   |   ]   |     \     |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |  Caps Lock  |   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   ;   |   '   |      Return     |
+   * |   Other 2   |   A   |   S   |   D   |   F   |   G   |   H   |   J   |   K   |   L   |   ;   |   '   |      Return     |
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |       Shift     |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |   /   |        Shift        |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |  Ctrl   |   Gui   |   Alt   |                      Space                      |   Alt   |   Fn    |   App   |  Ctrl   |
+   * |  Ctrl   |   Gui   |   Alt   |                      Space                      |   Alt   | Other 1 |   App   |  Ctrl   |
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = {
@@ -69,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------------------------------.
    * |   `   |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |      Del      |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * | AG Toggle | PgUp  |   Up  | PgDn  | Home  |  Ins  |BL Togg| MS UL | MS Up | MS UR |       | PrtSc | ScLck |   Pause   |
+   * |           | PgUp  |   Up  | PgDn  | Home  |  Ins  |BL Togg| MS UL | MS Up | MS UR |       | PrtSc | ScLck |   Pause   |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |             | Left  | Down  | Right |  End  |  Del  |BL  Inc| MS Lf | MS B1 | MS Rt |       |       |                 |
+   * |  Caps Lock  | Left  | Down  | Right |  End  |  Del  |BL  Inc| MS Lf | MS B1 | MS Rt |       |       |                 |
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |                 |Ply/Pse| Mute  | Next  | Vol-  | Vol+  |BL  Dec| MS DL | MS Dn | MS DR |       |                     |
    * |-----------------------------------------------------------------------------------------------------------------------|
@@ -79,8 +82,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_OTHER1] = {
-    { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL  },
-    { AG_TOGG, KC_PGUP, KC_UP,   KC_PGDN, KC_HOME, KC_INS,  BL_TOGG, MMV_UL,  KC_MS_U, MMV_UR,  XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS },
+    { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  SP_DEL  },
+    { _______, KC_PGUP, KC_UP,   KC_PGDN, KC_HOME, KC_INS,  BL_TOGG, MMV_UL,  KC_MS_U, MMV_UR,  XXXXXXX, KC_PSCR, KC_SLCK, SP_PAUS },
     { KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  KC_DEL,  BL_INC,  KC_MS_L, KC_BTN1, KC_MS_R, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
     { _______, XXXXXXX, KC_MPLY, KC_MUTE, KC_MNXT, KC_VOLD, KC_VOLU, BL_DEC,  MMV_DL,  KC_MS_D, MMV_DR,  XXXXXXX, XXXXXXX, _______ },
     { _______, _______, _______, _______, _______, KC_BTN2, _______, _______, _______, _______, _______, _______, _______, _______ }
@@ -90,26 +93,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------------------------------.
    * |   `   |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |      Del      |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * | AG Toggle |       |       |       |       |  Ins  |BL Togg| Home  |   Up  | Pg Up |       | PrtSc | ScLck |   Pause   |
+   * | AG Toggle |BB Togg|BL Togg|       |       |       | Home  | Pg Up | Pg Dn |  End  |  Ins  | PrtSc | ScLck |   Pause   |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |             |       |       |       |       |  Del  |BL  Inc| Left  | Down  | Right |       |       |                 |
+   * |             |BL  Inc|BL  Dec|       |       |       | Left  | Down  |  Up   | Right |  Del  |       |                 |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |                 |Ply/Pse| Mute  | Next  | Vol-  | Vol+  |BL  Dec|  End  |       | Pg Dn |       |                     |
+   * |                 |       |       |       |       |       |       | Mute  | Vol - | Vol + |PlayPse|                     |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |         |         |         |                     MS Btn 2                    |         |  Caps   |         |         |
+   * |         |         |         |                      Mute                       |         |  Caps   |         |         |
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_OTHER2] = {
-    { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL  },
-    { AG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_INS,  BL_TOGG, KC_HOME, KC_UP,   KC_PGUP, XXXXXXX, KC_PSCR, KC_SLCK, KC_PAUS },
-    { OTHER2,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,  BL_INC,  KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
-    { _______, XXXXXXX, KC_MPLY, KC_MUTE, KC_MNXT, KC_VOLD, KC_VOLU, BL_DEC,  KC_END,  XXXXXXX, KC_PGDN, XXXXXXX, XXXXXXX, _______ },
-    { _______, _______, _______, _______, _______, KC_BTN2, _______, _______, _______, _______, _______, KC_CAPS, _______, _______ }
+    { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  SP_DEL  },
+    { AG_TOGG, BB_TOGG, BL_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_INS,  KC_PSCR, KC_SLCK, SP_PAUS },
+    { OTHER2,  BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  XXXXXXX, XXXXXXX, _______ },
+    { _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, XXXXXXX, _______ },
+    { _______, _______, _______, _______, _______, KC_MUTE, _______, _______, _______, _______, _______, KC_CAPS, _______, _______ }
   }
 };
 
+bool special_key_swap(bool swapped, keyrecord_t *record, uint16_t code_norm, uint16_t code_swap) {
+  if (record->event.pressed) {
+    if (!eeconfig_is_enabled()) {
+      eeconfig_init();
+    }
+    keymap_config.raw = eeconfig_read_keymap();
+    swapped = keymap_config.swap_backslash_backspace;
+    register_code(swapped ? code_swap : code_norm);
+  } else {
+    unregister_code(swapped ? code_swap : code_norm);
+  }
+  return swapped;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static bool sp_del_swapped;
+  static bool sp_bsls_swapped;
+
   switch (keycode) {
+  case SP_DEL:
+    sp_del_swapped = special_key_swap(sp_del_swapped, record, KC_DEL, KC_PAUS);
+    return false;
+  case SP_PAUS:
+    sp_bsls_swapped = special_key_swap(sp_bsls_swapped, record, KC_PAUS, KC_DEL);
+    return false;
   case AG_TOGG:
     if (record->event.pressed) {
       if (!eeconfig_is_enabled()) {
@@ -118,12 +144,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       keymap_config.raw = eeconfig_read_keymap();
       // Keep them in sync
       keymap_config.swap_lalt_lgui = !keymap_config.swap_lalt_lgui;
-      keymap_config.swap_ralt_rgui = keymap_config.swap_lalt_lgui;
+      keymap_config.swap_ralt_rgui =  keymap_config.swap_lalt_lgui;
       eeconfig_update_keymap(keymap_config.raw);
       clear_keyboard(); // clear to prevent stuck keys
     }
     return false;
-    break;
+  case BB_TOGG:
+    if (record->event.pressed) {
+      if (!eeconfig_is_enabled()) {
+        eeconfig_init();
+      }
+      keymap_config.raw = eeconfig_read_keymap();
+      keymap_config.swap_backslash_backspace = !keymap_config.swap_backslash_backspace;
+      eeconfig_update_keymap(keymap_config.raw);
+      clear_keyboard(); // clear to prevent stuck keys
+    }
+    return false;
 #ifdef MOUSEKEY_ENABLE
   case MMV_UL:
     if (record->event.pressed) {
@@ -134,7 +170,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       mousekey_off(KC_MS_LEFT);
     }
     return false;
-    break;
   case MMV_UR:
     if (record->event.pressed) {
       mousekey_on(KC_MS_UP);
@@ -144,7 +179,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       mousekey_off(KC_MS_RIGHT);
     }
     return false;
-    break;
   case MMV_DL:
     if (record->event.pressed) {
       mousekey_on(KC_MS_DOWN);
@@ -154,7 +188,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       mousekey_off(KC_MS_LEFT);
     }
     return false;
-    break;
   case MMV_DR:
     if (record->event.pressed) {
       mousekey_on(KC_MS_DOWN);
@@ -164,7 +197,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       mousekey_off(KC_MS_RIGHT);
     }
     return false;
-    break;
 #endif
   }
   return true;
