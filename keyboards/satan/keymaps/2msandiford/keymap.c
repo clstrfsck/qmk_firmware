@@ -30,8 +30,14 @@ enum gh60_layers {
 enum planck_keycodes {
   AG_TOGG = SAFE_RANGE, // Toggle Alt and Gui swap
   BB_TOGG,              // Toggle Backslash and Backspace swap
-  SP_DEL,
-  SP_PAUS,
+  SP_DEL,               // DEL or PAUSE depending on BB swap
+  SP_PAUS,              // PAUSE or DEL
+  SP_UNDO,              // Cmd-Z or Ctrl-Z depending on AG swap
+  SP_CUT,               // Cmd-X or Ctrl-X
+  SP_COPY,              // Cmd-C or Ctrl-C
+  SP_PSTE,              // Cmd-V or Ctrl-V
+  SP_ALL,               // Cmd-A or Ctrl-A
+  SP_SAVE,              // Cmd-S or Ctrl-S
   MMV_UL,
   MMV_UR,
   MMV_DL,
@@ -72,20 +78,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------------------------------.
    * |   `   |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |      Del      |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |           | PgUp  |   Up  | PgDn  | Home  |  Ins  |BL Togg| MS UL | MS Up | MS UR |       | PrtSc | ScLck |   Pause   |
+   * | AG Toggle |BB Togg|BL Togg|       |       |       |       | MS UL | MS Up | MS UR |       |       |       |           |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |  Caps Lock  | Left  | Down  | Right |  End  |  Del  |BL  Inc| MS Lf | MS B1 | MS Rt |       |       |                 |
+   * |  Caps Lock  |BL  Inc|BL  Dec|       |       |       |       | MS Lf | MS B1 | MS Rt |       |       |                 |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |                 |Ply/Pse| Mute  | Next  | Vol-  | Vol+  |BL  Dec| MS DL | MS Dn | MS DR |       |                     |
+   * |                 |       |       |       |       |       |       | MS DL | MS Dn | MS DR |       |                     |
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |         |         |         |                     MS Btn 2                    |         |         |         |         |
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_OTHER1] = {
     { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  SP_DEL  },
-    { _______, KC_PGUP, KC_UP,   KC_PGDN, KC_HOME, KC_INS,  BL_TOGG, MMV_UL,  KC_MS_U, MMV_UR,  XXXXXXX, KC_PSCR, KC_SLCK, SP_PAUS },
-    { KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,  KC_DEL,  BL_INC,  KC_MS_L, KC_BTN1, KC_MS_R, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
-    { _______, XXXXXXX, KC_MPLY, KC_MUTE, KC_MNXT, KC_VOLD, KC_VOLU, BL_DEC,  MMV_DL,  KC_MS_D, MMV_DR,  XXXXXXX, XXXXXXX, _______ },
+    { AG_TOGG, BB_TOGG, BL_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX },
+    { KC_CAPS, BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_L, KC_BTN1, KC_MS_R, XXXXXXX, XXXXXXX, XXXXXXX, _______ },
+    { _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  XXXXXXX, XXXXXXX, _______ },
     { _______, _______, _______, _______, _______, KC_BTN2, _______, _______, _______, _______, _______, _______, _______, _______ }
   },
 
@@ -93,49 +99,95 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------------------------------------.
    * |   `   |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |  F12  |      Del      |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * | AG Toggle |BB Togg|BL Togg|       |       |       | Home  | Pg Up | Pg Dn |  End  |  Ins  | PrtSc | ScLck |   Pause   |
+   * |           |       |       |       |       |       | Home  | Pg Up | Pg Dn |  End  |  Ins  | PrtSc | ScLck |   Pause   |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |             |BL  Inc|BL  Dec|       |       |       | Left  | Down  |  Up   | Right |  Del  |       |                 |
+   * |             |       |       |       |       |       | Left  | Down  |  Up   | Right |  Del  |       |                 |
    * |-----------------------------------------------------------------------------------------------------------------------|
-   * |                 |       |       |       |       |       |       | Mute  | Vol - | Vol + |PlayPse|                     |
+   * |                 | Undo  |  Cut  | Copy  | Paste |       |       | Mute  | Vol - | Vol + |PlayPse|                     |
    * |-----------------------------------------------------------------------------------------------------------------------|
    * |         |         |         |                      Mute                       |         |  Caps   |         |         |
    * `-----------------------------------------------------------------------------------------------------------------------'
    */
   [_OTHER2] = {
     { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  SP_DEL  },
-    { AG_TOGG, BB_TOGG, BL_TOGG, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_INS,  KC_PSCR, KC_SLCK, SP_PAUS },
-    { OTHER2,  BL_INC,  BL_DEC,  XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  XXXXXXX, XXXXXXX, _______ },
-    { _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, XXXXXXX, _______ },
+    { _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_INS,  KC_PSCR, KC_SLCK, SP_PAUS },
+    { OTHER2,  SP_ALL,  SP_SAVE, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  XXXXXXX, XXXXXXX, _______ },
+    { _______, XXXXXXX, SP_UNDO, SP_CUT,  SP_COPY, SP_PSTE, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, XXXXXXX, _______ },
     { _______, _______, _______, _______, _______, KC_MUTE, _______, _______, _______, _______, _______, KC_CAPS, _______, _______ }
   }
 };
 
-bool special_key_swap(bool swapped, keyrecord_t *record, uint16_t code_norm, uint16_t code_swap) {
-  if (record->event.pressed) {
-    if (!eeconfig_is_enabled()) {
-      eeconfig_init();
-    }
-    keymap_config.raw = eeconfig_read_keymap();
-    swapped = keymap_config.swap_backslash_backspace;
-    register_code(swapped ? code_swap : code_norm);
-  } else {
-    unregister_code(swapped ? code_swap : code_norm);
+static void keymap_config_read(void) {
+  if (!eeconfig_is_enabled()) {
+    eeconfig_init();
   }
-  return swapped;
+  keymap_config.raw = eeconfig_read_keymap();
+}
+
+static bool is_ag_swapped(void) {
+  keymap_config_read();
+  return keymap_config.swap_lalt_lgui;
+}
+
+static bool is_bb_swapped(void) {
+  keymap_config_read();
+  return keymap_config.swap_backslash_backspace;
+}
+
+void special_key_swap(bool pressed, uint16_t code_norm, uint16_t code_swap) {
+  static bool bb_swapped;
+  if (pressed) {
+    bb_swapped = is_bb_swapped();
+    register_code(bb_swapped ? code_swap : code_norm);
+  } else {
+    unregister_code(bb_swapped ? code_swap : code_norm);
+  }
+}
+
+void special_control_key(bool pressed, uint16_t code) {
+  static bool ag_swapped;
+  if (pressed) {
+    ag_swapped = is_ag_swapped();
+    register_code(ag_swapped ? KC_LGUI : KC_LCTL);
+    register_code(code);
+  } else {
+    unregister_code(code);
+    unregister_code(ag_swapped ? KC_LGUI : KC_LCTL);
+  }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static bool sp_del_swapped;
-  static bool sp_bsls_swapped;
-
   switch (keycode) {
+    // Make DEL and PAUSE swap with Backslash/Backspace
   case SP_DEL:
-    sp_del_swapped = special_key_swap(sp_del_swapped, record, KC_DEL, KC_PAUS);
+    special_key_swap(record->event.pressed, KC_DEL, KC_PAUS);
     return false;
   case SP_PAUS:
-    sp_bsls_swapped = special_key_swap(sp_bsls_swapped, record, KC_PAUS, KC_DEL);
+    special_key_swap(record->event.pressed, KC_PAUS, KC_DEL);
     return false;
+
+    // Make edit keys (CUT,COPY,PASTE,UNDO,SELECT ALL,SAVE) do the right thing
+    // on Mac and Windows.  Assume that AG_SWAP is in place for Mac.
+  case SP_UNDO:
+    special_control_key(record->event.pressed, KC_Z);
+    return false;
+  case SP_CUT:
+    special_control_key(record->event.pressed, KC_X);
+    return false;
+  case SP_COPY:
+    special_control_key(record->event.pressed, KC_C);
+    return false;
+  case SP_PSTE:
+    special_control_key(record->event.pressed, KC_V);
+    return false;
+  case SP_ALL:
+    special_control_key(record->event.pressed, KC_A);
+    return false;
+  case SP_SAVE:
+    special_control_key(record->event.pressed, KC_S);
+    return false;
+
+    // Toggle for Alt/GUI so as not to require two keys.
   case AG_TOGG:
     if (record->event.pressed) {
       if (!eeconfig_is_enabled()) {
@@ -149,6 +201,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       clear_keyboard(); // clear to prevent stuck keys
     }
     return false;
+
+    // Toggle for Backspace/Backslash so as not to require two keys.
   case BB_TOGG:
     if (record->event.pressed) {
       if (!eeconfig_is_enabled()) {
@@ -160,6 +214,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       clear_keyboard(); // clear to prevent stuck keys
     }
     return false;
+
 #ifdef MOUSEKEY_ENABLE
   case MMV_UL:
     if (record->event.pressed) {
