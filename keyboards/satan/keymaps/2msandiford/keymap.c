@@ -38,6 +38,8 @@ enum planck_keycodes {
   SP_PSTE,              // Cmd-V or Ctrl-V
   SP_ALL,               // Cmd-A or Ctrl-A
   SP_SAVE,              // Cmd-S or Ctrl-S
+  SP_FIND,              // Cmd-F or Ctrl-F
+  SP_AGIN,              // Cmd-G or Ctrl-G
   MMV_UL,
   MMV_UR,
   MMV_DL,
@@ -111,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_OTHER2] = {
     { KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  SP_DEL  },
     { _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_INS,  KC_PSCR, KC_SLCK, SP_PAUS },
-    { OTHER2,  SP_ALL,  SP_SAVE, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  XXXXXXX, XXXXXXX, _______ },
+    { OTHER2,  SP_ALL,  SP_SAVE, XXXXXXX, SP_FIND, SP_AGIN, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DEL,  XXXXXXX, XXXXXXX, _______ },
     { _______, XXXXXXX, SP_UNDO, SP_CUT,  SP_COPY, SP_PSTE, XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, XXXXXXX, _______ },
     { _______, _______, _______, _______, _______, KC_MUTE, _______, _______, _______, _______, _______, KC_CAPS, _______, _______ }
   }
@@ -185,6 +187,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
   case SP_SAVE:
     special_control_key(record->event.pressed, KC_S);
+    return false;
+  case SP_FIND:
+    special_control_key(record->event.pressed, KC_F);
+    return false;
+  case SP_AGIN:
+    special_control_key(record->event.pressed, KC_G);
     return false;
 
     // Toggle for Alt/GUI so as not to require two keys.
