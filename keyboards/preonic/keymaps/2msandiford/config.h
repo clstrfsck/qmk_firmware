@@ -52,4 +52,7 @@
 // Enable breathing
 #define BACKLIGHT_BREATHING
 
+// Need longer for media keys and rotary encoders
+#define TAP_CODE_DELAY 20
+
 #endif
