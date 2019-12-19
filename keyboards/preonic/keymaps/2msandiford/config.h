@@ -40,10 +40,11 @@
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
 
 /* Grave Esc stuff. */
-#define GRAVE_ESC_ALT_OVERRIDE
-#define GRAVE_ESC_CTRL_OVERRIDE
+//Not using this, so commented out
+//#define GRAVE_ESC_ALT_OVERRIDE
+//#define GRAVE_ESC_CTRL_OVERRIDE
 
-// Have left and right side modifiers in different layers on the same keys
+// If we get stuck on a layer with no modifier key
 #define PREVENT_STUCK_MODIFIERS
 
 // Not sure why this isn't default
@@ -51,6 +52,9 @@
 
 // Enable breathing
 #define BACKLIGHT_BREATHING
+
+// Tap dance
+#define TAPPING_TERM 300
 
 // Need longer for media keys and rotary encoders
 #define TAP_CODE_DELAY 20
