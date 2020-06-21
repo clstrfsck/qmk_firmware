@@ -3,7 +3,7 @@ ifndef QUANTUM_DIR
 endif
 
 API_SYSEX_ENABLE   = no         # Control through Sysex API
-AUDIO_ENABLE       = yes        # Audio output on port C6
+AUDIO_ENABLE       = no         # Audio output on port C6
 BACKLIGHT_ENABLE   = yes        # Enable keyboard backlight functionality on B7 by default
 BLUETOOTH_ENABLE   = no         # Enable Bluetooth with the Adafruit EZ-Key HID
 BOOTMAGIC_ENABLE   = no         # Virtual DIP switch configuration (+1000)
