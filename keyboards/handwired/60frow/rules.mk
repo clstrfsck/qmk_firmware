@@ -1,2 +1,2 @@
-DEFAULT_FOLDER=handwired/60frow/mini
+DEFAULT_FOLDER=handwired/60frow/teensy
 
