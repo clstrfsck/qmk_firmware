@@ -30,11 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DESCRIPTION dekuNukem kbord
 
 /* key matrix size */
-#define MATRIX_ROWS 5
+#define MATRIX_ROWS 6
 #define MATRIX_COLS 3
 
 /* direct pins */
-#define DIRECT_PINS { { B13, B14, B15 }, { A8, A15, B3 }, { B4, B5, B6 }, { B7, C13, C14 }, { C15, F0, F1 } }
+#define DIRECT_PINS { { B13, B14, B15 }, { A8, A15, B3 }, { B4, B5, B6 }, { B7, C13, C14 }, { C15, F0, F1}, { A1, A2, NO_PIN } }
 
 /* define if matrix has ghost */
 //#define MATRIX_HAS_GHOST
