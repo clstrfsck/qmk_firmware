@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_7, KC_8, KC_9,
         KC_A, KC_B, KC_C,
         KC_D, KC_E, KC_F,
-        KC_MINS, KC_PLUS
+        RGB_TOG, RGB_MOD
     )
 };
 
@@ -36,10 +36,16 @@ void keyboard_pre_init_user(void) {
     // debug_matrix = true;
     // debug_keyboard = true;
     // debug_mouse = true;
-//    print("keyboard_pre_init_user\n");
+
+    palSetPadMode(GPIOA, 10, PAL_MODE_OUTPUT_PUSHPULL);
+    palSetPad(GPIOA, 10);
 }
 
 void keyboard_post_init_user(void) {
-    print("keyboard_post_init_user\n");
+//    chThdSleepMilliseconds(5000);
+//    print("keyboard_post_init_user\n");
+//    uprintf("STM32_SYSCLK = %u\n", STM32_SYSCLK);
+//    uprintf("STM32_HCLK = %u\n", STM32_HCLK);
+//    uprintf("STM32_PCLK = %u\n", STM32_PCLK);
 //    oled_init(OLED_ROTATION_0);
 }

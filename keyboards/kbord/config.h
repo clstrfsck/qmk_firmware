@@ -76,6 +76,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C1_TIMINGR_SCLH   3U
 #define I2C1_TIMINGR_SCLL   9U
 
+/* SPI for WS2812 (not working - using bit-bashing)  */
+#define WS2812_SPI SPID1
+#define WS2812_SPI_MOSI_PAL_MODE 0
+#define RGBLED_NUM 15
+#define RGB_DI_PIN A7
+
+/* RGBLIGHT */
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_STATIC_PATTERNS
+
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
