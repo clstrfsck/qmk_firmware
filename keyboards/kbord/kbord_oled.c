@@ -48,7 +48,7 @@ void oled_task_user(void) {
 
     oled_draw_line(2, 0, 129, 63);
     oled_draw_line(2, 63, 129, 0);
-#elif 0
+#elif 1
     double angledeg = seq % 360;
     double anglerad = angledeg * M_PI / 180.0;
     int16_t halfwidth = OLED_DISPLAY_WIDTH / 2.0;
