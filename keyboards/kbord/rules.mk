@@ -18,4 +18,5 @@ CUSTOM_MATRIX = no       # Custom matrix file
 # BACKLIGHT_ENABLE = no    # This is broken on 072 for some reason
 RGBLIGHT_ENABLE = yes
 OLED_DRIVER_ENABLE = yes # Enable the OLED Driver
-# WS2812_DRIVER = spi
+# WS2812_DRIVER = spi      # Not working yet
+# WS2812_DRIVER = pwm      # Not working yet
