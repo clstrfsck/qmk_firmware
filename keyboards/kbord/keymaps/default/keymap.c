@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <print.h>
 
+#include "rgblight.h"
 #include "oled/oled_driver.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -37,6 +38,7 @@ void keyboard_pre_init_user(void) {
     // debug_keyboard = true;
     // debug_mouse = true;
 
+    // Enable gate for RGB LED control
     palSetPadMode(GPIOA, 10, PAL_MODE_OUTPUT_PUSHPULL);
     palSetPad(GPIOA, 10);
 }
@@ -48,4 +50,5 @@ void keyboard_post_init_user(void) {
 //    uprintf("STM32_HCLK = %u\n", STM32_HCLK);
 //    uprintf("STM32_PCLK = %u\n", STM32_PCLK);
 //    oled_init(OLED_ROTATION_0);
+    rgblight_set();
 }
