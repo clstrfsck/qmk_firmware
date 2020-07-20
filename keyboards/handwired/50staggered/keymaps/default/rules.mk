@@ -7,7 +7,7 @@ COMBO_ENABLE = no          # Key combos
 NKRO_ENABLE = yes          # USB Nkey Rollover
 BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality on B7 by default
 LEADER_ENABLE = no         # Leader key chording
-MIDI_ENABLE = yes          # MIDI support
+MIDI_ENABLE = no           # MIDI support
 UNICODE_ENABLE = no        # Unicode
 TAP_DANCE_ENABLE = yes     # Key tapping
 

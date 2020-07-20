@@ -24,12 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT_ID 0xB07D
 #define DEVICE_VER 0x0002
 #define MANUFACTURER clstrfsck
-#define PRODUCT 60FRow
-#define DESCRIPTION "Handwire Board with FRow"
+#define PRODUCT 50Stag
+#define DESCRIPTION "Handwire 50 percent"
 
 /* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 15
+#define MATRIX_ROWS 5
+#define MATRIX_COLS 13
 
 /*
  * Keyboard Matrix Assignments
@@ -41,9 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_ROW_PINS { D5, F0, F1, F4, F5, F6 }
-#define MATRIX_COL_PINS { B1, B2, E6, B3, B7, D0, D1, B6, B5, B4, D7, D4, D6, D3, D2 }
-#define UNUSED_PINS { C6, C7, B0, F7 }
+#define MATRIX_ROW_PINS { D5, B2, B1, B0, F7 }
+#define MATRIX_COL_PINS { E6, B3, B7, D6, D7, B4, B5, B6, C6, C7, D4, D3, D2 }
+#define UNUSED_PINS { D0, D1, F0, F1, F4, F5, F6 }
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
