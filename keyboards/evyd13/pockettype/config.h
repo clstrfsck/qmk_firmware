@@ -41,7 +41,12 @@
 */
 #define MATRIX_ROW_PINS {D3,D1,D7,B5}
 #define MATRIX_COL_PINS {F6,F7,B1,B3,B2,B6,B4,E6,C6,D4,D0,D2}
-#define UNUSED_PINS {B1,B2,B3}
+// LEDs are on F4, F5
+// On Elite-C B0 needs to be driven high to get LEDs to work
+// Could potentially use this for 2 pin 2 colour LEDs
+
+// Following available pins are on Elite-C end of board
+#define UNUSED_PINS {B7,D5,C7,F1,F0}
 
 /* COL2ROW, ROW2COL*/
 #define DIODE_DIRECTION COL2ROW
