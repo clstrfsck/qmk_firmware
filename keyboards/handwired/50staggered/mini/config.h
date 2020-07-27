@@ -20,12 +20,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID 0xFEED
-#define PRODUCT_ID 0xB07D
-#define DEVICE_VER 0x0002
+#define VENDOR_ID    0x4346
+#define PRODUCT_ID   0x3530
+#define DEVICE_VER   0x0002
 #define MANUFACTURER clstrfsck
-#define PRODUCT 50Stag
-#define DESCRIPTION "Handwire 50 percent"
+#define PRODUCT      50Stag
+#define DESCRIPTION  "Handwire 50 percent"
 
 /* key matrix size */
 #define MATRIX_ROWS 5
