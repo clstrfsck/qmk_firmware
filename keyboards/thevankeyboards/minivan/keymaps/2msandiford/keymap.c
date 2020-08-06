@@ -9,8 +9,8 @@ extern keymap_config_t keymap_config;
 #define _L3 3
 
 // Custom macros
-#define L1_ENT      LT(_L1, KC_ENT)             // Tap for Enter, hold for L1
-#define L2_SPC      LT(_L2, KC_SPC)             // Tap for Space, hold for L2
+#define L1_SPC      LT(_L1, KC_SPC)             // Tap for Space, hold for L1
+#define L2_ENT      LT(_L2, KC_ENT)             // Tap for Enter, hold for L2
 #define L3_MOM      MO(_L3)                     // Tap for Slash, hold for L3
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -23,14 +23,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-----------------------------------------------------------------------------------------------------|
  * |    Shift    |   Z   |   X   |   C   |   V   |   B   |   N   |   M   |   ,   |   .   |  Up   |   /   |
  * |-----------------------------------------------------------------------------------------------------|
- * |   Ctl   |    Alt    |   GUI   |    L1/Enter     |   L2/Space    |    L3     | Left  | Down  | Right |
+ * |   Ctl   |    Alt    |   GUI   |    L2/Enter     |   L1/Space    |    L3     | Left  | Down  | Right |
  *  `----------------------------------------------------------------------------------------------------'
  */
 [_L0] = LAYOUT_arrow(
     KC_ESC, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSPC,
     KC_TAB,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,
     KC_LSFT,      KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_UP,  KC_SLSH,
-    KC_LCTL,  KC_LALT,    KC_LGUI,  L1_ENT,           L2_SPC,         L3_MOM,     KC_LEFT,KC_DOWN,KC_RGHT
+    KC_LCTL,  KC_LALT,    KC_LGUI,  L2_ENT,           L1_SPC,         L3_MOM,     KC_LEFT,KC_DOWN,KC_RGHT
 ),
 
 /* L1
