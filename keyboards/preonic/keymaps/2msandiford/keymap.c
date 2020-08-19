@@ -138,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
  *|        |        |        |        |        |        |        | MS DL  | MS D   | MS DR  | MS WHL | MS WHR |
  *|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
- *|        |        |        |        |        | MS BT1 | MS BT2 |        |  Home  | Pg Up  | Pg Dn  |  End   |
+ *|        |        |        |        |        |     MS BT1      |        |  Home  | Pg Up  | Pg Dn  |  End   |
  *`-----------------------------------------------------------------------------------------------------------'
  */
 [_MOUSE] = LAYOUT_preonic_grid( \
@@ -146,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_U, XXXXXXX, \
    _______, KC_BTN5, KC_BTN4, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_MS_L, KC_BTN1, KC_MS_R, KC_WH_D, XXXXXXX, \
    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MMV_DL,  KC_MS_D, MMV_DR,  KC_WH_L, KC_WH_R, \
-   _______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END   \
+   _______, _______, _______, _______, XXXXXXX, KC_BTN1, KC_BTN1, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END   \
 ),
 
 /* Lower
