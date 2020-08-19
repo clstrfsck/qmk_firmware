@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-----------------------------------------------------------------------------------------------------|
  * |  Trns   | Trns  | SLck  |  Ins  | PScr  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  |   Trns    |
  * |-----------------------------------------------------------------------------------------------------|
- * |    Trns     | RESET | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  |
+ * |    Trns     | RESET | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | MPrev | MNext | Trns  | MPlay |
  * |-----------------------------------------------------------------------------------------------------|
  * |  Trns   |   Trns    |  Trns   |      Trns       |     Trns      |   Trns    | Trns  | Trns  | Trns  |
  *  `----------------------------------------------------------------------------------------------------'
