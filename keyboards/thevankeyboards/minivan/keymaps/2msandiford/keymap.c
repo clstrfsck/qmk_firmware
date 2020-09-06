@@ -59,21 +59,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-----------------------------------------------------------------------------------------------------|
  * |    Trns     | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | PgUp  | Trns  |
  * |-----------------------------------------------------------------------------------------------------|
- * |  Trns   |   Trns    |   App   |      Trns       |     Trns      |   Trns    | Home  | PgDn  |  End  |
+ * |  Trns   |   Trns    |  Trns   |      Trns       |     Trns      |   Trns    | Home  | PgDn  |  End  |
  *  `----------------------------------------------------------------------------------------------------'
  */
 [_L2] = LAYOUT_arrow(
     KC_TILD,KC_EXLM,KC_AT,  KC_HASH,KC_DLR, KC_PERC,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______,
     _______,  KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE,KC_PIPE,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,_______,
     _______,      _______,_______,_______,_______,_______,_______,_______,_______,_______,KC_PGUP,_______,
-    _______,  _______,    KC_APP,   _______,          _______,        _______,    KC_HOME,KC_PGDN,KC_END
+    _______,  _______,    _______,  _______,          _______,        _______,    KC_HOME,KC_PGDN,KC_END
 ),
 
 /* L3
  * ,-----------------------------------------------------------------------------------------------------.
  * |  F1   |  F2   |  F3   |  F4   |  F5   |  F6   |  F7   |  F8   |  F9   |  F10  |  F11  |     F12     |
  * |-----------------------------------------------------------------------------------------------------|
- * |  Trns   | Trns  | SLck  |  Ins  | PScr  | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  |   Trns    |
+ * |  Trns   | PScr  | SLock | Pause | Trns  |  App  | Trns  |  Ins  | Trns  | Trns  | Trns  |   Trns    |
  * |-----------------------------------------------------------------------------------------------------|
  * |    Trns     | RESET | Trns  | Trns  | Trns  | Trns  | Trns  | Trns  | MPrev | MNext | Trns  | MPlay |
  * |-----------------------------------------------------------------------------------------------------|
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_L3] = LAYOUT_arrow(
     KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,
-    _______,  _______,KC_SLCK,KC_INS, KC_PSCR,_______,_______,_______,_______,_______,_______,_______,
+    _______,  KC_PSCR,KC_SLCK,KC_PAUS,_______,KC_APP, _______,KC_INS, _______,_______,_______,_______,
     _______,      RESET,  _______,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,_______,KC_MPLY,
     _______,  _______,    _______,  _______,          _______,        _______,    _______,_______,_______
 )
