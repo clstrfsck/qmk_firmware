@@ -39,6 +39,13 @@ enum f60_keycodes {
 #define CC_NORM  MAGIC_UNSWAP_CONTROL_CAPSLOCK
 #define CC_SWAP  MAGIC_SWAP_CONTROL_CAPSLOCK
 
+// Make these shorter
+#define HPT_MOI HPT_MODI
+#define HPT_MOD HPT_MODD
+#define HPT_CON HPT_CONT
+#define HPT_COI HPT_CONI
+#define HPT_COD HPT_COND
+
 // RShift when held, up otherwise
 #define RS_UP    RSFT_T(KC_UP)
 // RShift when held, pgup otherwise
@@ -72,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 /* Layer 1: Fn Layer
  * ,-----------------------------------------------------------------------------------------------------------------------.
- * | Reset |       |   F1  |   F2  |   F3  |   F4  |   |   F5  |   F6  |   F7  |   F8  |   | AGNrm | AGSwp | CCNrm | CCSwp |
+ * | Reset |       | H RST | H Con | HCInc | HCDec |   | H Tog | H Fbk | HFInc | HFDec |   | AGNrm | AGSwp | CCNrm | CCSwp |
  * |-----------------------------------------------------------------------------------------------------------------------|
  * |   `   |   F1  |   F2  |   F3  |   F4  |   F5  |   F6  |   F7  |   F8  |   F9  |  F10  |  F11  |  F12  |   \   |  Mute |
  * |-----------------------------------------------------------------------------------------------------------------------|
@@ -86,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------------------------------------------'
  */
 [_LAYER1] = LAYOUT( \
-    RESET,          _______,_______,_______,_______,    _______,_______,_______,_______,    AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,
+    RESET,          HPT_RST,HPT_CON,HPT_COI,HPT_COD,    HPT_TOG,HPT_FBK,HPT_MOI,HPT_MOD,    AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,
     _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,KC_MUTE,
     _______,    MMV_UL, KC_MS_U,MMV_UR, KC_WH_U,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK,KC_PAUS,KC_VOLU,
     _______,      KC_MS_L,KC_BTN1,KC_MS_R,KC_WH_D,_______,_______,_______,_______,_______,_______,_______,KC_VOLD,
