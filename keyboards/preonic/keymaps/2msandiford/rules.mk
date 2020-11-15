@@ -26,6 +26,7 @@ UCIS_ENABLE        = no
 UNICODEMAP_ENABLE  = no
 UNICODE_ENABLE     = no         # Unicode
 VIRTSER_ENABLE     = no         # Virtual serial (required for Steno)
+UCIS_ENABLE        = yes
 
 EXTRAFLAGS        += -flto
 

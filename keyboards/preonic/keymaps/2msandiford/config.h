@@ -59,4 +59,7 @@
 // Need longer for media keys and rotary encoders
 #define TAP_CODE_DELAY 20
 
+// Unicode
+#define UNICODE_SELECTED_MODES UC_MAC, UC_LNX, UC_WINC
+
 #endif

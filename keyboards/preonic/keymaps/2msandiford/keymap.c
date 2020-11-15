@@ -45,7 +45,8 @@ enum planck_keycodes {
   MMV_UL,
   MMV_UR,
   MMV_DL,
-  MMV_DR
+  MMV_DR,
+  SK_UCIS
 };
 
 enum tapdance_codes {
@@ -230,9 +231,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  XXXXXXX, QWERTY,  COLEMAK, DVORAK,  PLOVER,  \
    RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, \
    RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, MU_ON,   MU_OFF,  MU_MOD,  XXXXXXX, \
-   RESET,   XXXXXXX, _______, _______, _______, _______, _______, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN   \
+   RESET,   XXXXXXX, _______, _______, _______, SK_UCIS, SK_UCIS, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN   \
 )
 
+};
+
+const qk_ucis_symbol_t ucis_symbol_table[] = {
+  {"aust", { 0x1F1E6, 0x1F1FA } },
+  {"cuba", { 0x1F1E8, 0x1F1FA } },
+  {"fire", { 0x1F525 } },
+  {"hams", { 0x1F439 } },
+  {"loco", { 0x1F682 } },
+  {"look", { 0x1F440 } },
+  {"marm", { 0x1F9BE } },
+  {"mleg", { 0x1F9BF } },
+  {"moai", { 0x1F5FF } },
+  {"poop", { 0x1F4A9 } },
+  {"rofl", { 0x1F923 } },
+  {"soon", { 0x1F51C } },
+  {"uk",   { 0x1F1EC, 0x1F1E7 } },
+
+  {"look", { 0x00CA0, 0x0005F, 0x00CA0 } },
+  { NULL, {} }
 };
 
 void tapdance_nxtprv(qk_tap_dance_state_t *state, void *user_data) {
@@ -250,7 +270,6 @@ void tapdance_nxtprv(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-
 // Tapdance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   // Tap once for next, twice for previous
@@ -258,8 +277,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 #ifdef AUDIO_ENABLE
-  float plover_song[][2]     = SONG(PLOVER_SOUND);
-  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
+float plover_song[][2]     = SONG(PLOVER_SOUND);
+float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 #endif
 
 #define LOWER_AND_RAISE ((1UL << _LOWER) | (1UL << _RAISE))
@@ -278,121 +297,113 @@ uint32_t layer_state_set_kb(uint32_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case DVORAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
-      }
-      return false;
-      break;
-    case PLOVER:
-      if (record->event.pressed) {
+  case QWERTY:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(_QWERTY);
+    }
+    return false;
+  case COLEMAK:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(_COLEMAK);
+    }
+    return false;
+  case DVORAK:
+    if (record->event.pressed) {
+      set_single_persistent_default_layer(_DVORAK);
+    }
+    return false;
+  case PLOVER:
+    if (record->event.pressed) {
 #ifdef AUDIO_ENABLE
-        stop_all_notes();
-        PLAY_SONG(plover_song);
+      stop_all_notes();
+      PLAY_SONG(plover_song);
 #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_off(_MOUSE);
-        layer_on(_PLOVER);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
+      layer_off(_RAISE);
+      layer_off(_LOWER);
+      layer_off(_ADJUST);
+      layer_off(_MOUSE);
+      layer_on(_PLOVER);
+      if (!eeconfig_is_enabled()) {
+        eeconfig_init();
       }
-      return false;
-      break;
-    case EXT_PLV:
-      if (record->event.pressed) {
+      keymap_config.raw = eeconfig_read_keymap();
+      keymap_config.nkro = 1;
+      eeconfig_update_keymap(keymap_config.raw);
+    }
+    return false;
+  case EXT_PLV:
+    if (record->event.pressed) {
 #ifdef AUDIO_ENABLE
-        PLAY_SONG(plover_gb_song);
+      PLAY_SONG(plover_gb_song);
 #endif
-        layer_off(_PLOVER);
-      }
-      return false;
-      break;
+      layer_off(_PLOVER);
+    }
+    return false;
 #if defined(BACKLIGHT_ENABLE) && defined(BACKLIGHT_BREATHING)
-    case BR_TOGG:
-        if (record->event.pressed) {
-            breathing_toggle();
-        }
-        return false;
-        break;
-    case BR_INC:
-        if (record->event.pressed) {
-            breathing_period_inc();
-        }
-        return false;
-        break;
-    case BR_DEC:
-        if (record->event.pressed) {
-            breathing_period_dec();
-        }
-        return false;
-        break;
-    case BR_DEF:
-        if (record->event.pressed) {
-            breathing_period_default();
-        }
-        return false;
-        break;
+  case BR_TOGG:
+    if (record->event.pressed) {
+      breathing_toggle();
+    }
+    return false;
+  case BR_INC:
+    if (record->event.pressed) {
+      breathing_period_inc();
+    }
+    return false;
+  case BR_DEC:
+    if (record->event.pressed) {
+      breathing_period_dec();
+    }
+    return false;
+  case BR_DEF:
+    if (record->event.pressed) {
+      breathing_period_default();
+    }
+    return false;
 #endif
 #ifdef MOUSEKEY_ENABLE
-    case MMV_UL:
-        if (record->event.pressed) {
-            mousekey_on(KC_MS_UP);
-            mousekey_on(KC_MS_LEFT);
-        } else {
-            mousekey_off(KC_MS_UP);
-            mousekey_off(KC_MS_LEFT);
-        }
-        return false;
-        break;
-    case MMV_UR:
-        if (record->event.pressed) {
-            mousekey_on(KC_MS_UP);
-            mousekey_on(KC_MS_RIGHT);
-        } else {
-            mousekey_off(KC_MS_UP);
-            mousekey_off(KC_MS_RIGHT);
-        }
-        return false;
-        break;
-    case MMV_DL:
-        if (record->event.pressed) {
-            mousekey_on(KC_MS_DOWN);
-            mousekey_on(KC_MS_LEFT);
-        } else {
-            mousekey_off(KC_MS_DOWN);
-            mousekey_off(KC_MS_LEFT);
-        }
-        return false;
-        break;
-    case MMV_DR:
-        if (record->event.pressed) {
-            mousekey_on(KC_MS_DOWN);
-            mousekey_on(KC_MS_RIGHT);
-        } else {
-            mousekey_off(KC_MS_DOWN);
-            mousekey_off(KC_MS_RIGHT);
-        }
-        return false;
-        break;
+  case MMV_UL:
+    if (record->event.pressed) {
+      mousekey_on(KC_MS_UP);
+      mousekey_on(KC_MS_LEFT);
+    } else {
+      mousekey_off(KC_MS_UP);
+      mousekey_off(KC_MS_LEFT);
+    }
+    return false;
+  case MMV_UR:
+    if (record->event.pressed) {
+      mousekey_on(KC_MS_UP);
+      mousekey_on(KC_MS_RIGHT);
+    } else {
+      mousekey_off(KC_MS_UP);
+      mousekey_off(KC_MS_RIGHT);
+    }
+    return false;
+  case MMV_DL:
+    if (record->event.pressed) {
+      mousekey_on(KC_MS_DOWN);
+      mousekey_on(KC_MS_LEFT);
+    } else {
+      mousekey_off(KC_MS_DOWN);
+      mousekey_off(KC_MS_LEFT);
+    }
+    return false;
+  case MMV_DR:
+    if (record->event.pressed) {
+      mousekey_on(KC_MS_DOWN);
+      mousekey_on(KC_MS_RIGHT);
+    } else {
+      mousekey_off(KC_MS_DOWN);
+      mousekey_off(KC_MS_RIGHT);
+    }
+    return false;
 #endif
+  case SK_UCIS:
+    if (record->event.pressed) {
+      qk_ucis_start();
+    }
+    return false;
   }
   return true;
 }
