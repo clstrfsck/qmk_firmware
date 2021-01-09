@@ -51,11 +51,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_DRIVER_ENABLE
 
-#include "wpm.h"
-#include <stdio.h>
+#define MODS_SFT_MASK   (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
+#define MODS_CTL_MASK   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTL))
+#define MODS_ALT_MASK   (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
+#define MODS_GUI_MASK   (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
+#include "wpm.h"
+
+#define MOD_INDICATOR_WIDTH 7
+
+const uint8_t PROGMEM sft_ind[MOD_INDICATOR_WIDTH * 2] = {
+  0,68,74,74,74,50,0,
+  126,187,181,181,181,205,126
+};
+
+const uint8_t PROGMEM ctl_ind[MOD_INDICATOR_WIDTH * 2] = {
+  0,60,66,66,66,36,0,
+  126,195,189,189,189,219,126
+};
+
+const uint8_t PROGMEM alt_ind[MOD_INDICATOR_WIDTH * 2] = {
+  0,124,18,18,18,124,0,
+  126,131,237,237,237,131,126
+};
+
+const uint8_t PROGMEM gui_ind[MOD_INDICATOR_WIDTH * 2] = {
+  0,60,66,66,82,116,0,
+  126,195,189,189,173,139,126
+};
+
+// Draw an indicator
+void draw_indicator(uint16_t index, const uint8_t *bitmap, bool on) {
+  if (on) {
+    bitmap += MOD_INDICATOR_WIDTH;
+  }
+  for (uint8_t i = 0; i < MOD_INDICATOR_WIDTH; ++i) {
+    uint8_t bits = pgm_read_byte(bitmap++);
+    oled_write_raw_byte(bits, index++);
+  }
+}
+
+// Draws a rectangle without the corner pixels included
 void draw_rect(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
-  for (uint8_t i = 0; i <= width; ++i) {
+  for (uint8_t i = 1; i < width; ++i) {
     oled_write_pixel(x + i, y, true);
     oled_write_pixel(x + i, y + height, true);
   }
@@ -65,8 +103,26 @@ void draw_rect(uint8_t x, uint8_t y, uint8_t width, uint8_t height) {
   }
 }
 
+char *uint8toa_nz(uint8_t val, char *buf) {
+  if (val != 0) {
+    uint8_t digit = val % 10;
+    buf = uint8toa_nz(val / 10, buf);
+    *buf++ = '0' + digit;
+  }
+  return buf;
+}
+
+void uint8toa(uint8_t val, char *buf) {
+  if (val == 0) {
+    *buf++ = '0';
+  } else {
+    buf = uint8toa_nz(val, buf);
+  }
+  *buf = '\0';
+}
+
 void oled_task_user(void) {
-  // Host Keyboard Layer Status
+  // Keyboard layer status
   oled_write_P(PSTR("Layer: "), false);
 
   uint8_t layer = get_highest_layer(layer_state);
@@ -79,23 +135,35 @@ void oled_task_user(void) {
     oled_write_ln_P(PSTR("Misc"), false);
     break;
   default:
-    sprintf(layer_name, "%d", layer);
+    uint8toa(layer, layer_name);
     oled_write_ln(layer_name, false);
     break;
   }
 
-  // Host Keyboard LED Status
+  // Keyboard LED status
   led_t led_state = host_keyboard_led_state();
   oled_write_P(led_state.caps_lock   ? PSTR("CAP ") : PSTR("    "), false);
   oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
-  oled_write_ln_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
+  oled_write_P(led_state.num_lock    ? PSTR("NUM ") : PSTR("    "), false);
+
+  // Modifier status
+  uint8_t mods = get_mods();
+  uint16_t index = 128 + 128 - (4 * MOD_INDICATOR_WIDTH);
+  draw_indicator(index, sft_ind, (mods & MODS_SFT_MASK) != 0);
+  index += MOD_INDICATOR_WIDTH;
+  draw_indicator(index, ctl_ind, (mods & MODS_CTL_MASK) != 0);
+  index += MOD_INDICATOR_WIDTH;
+  draw_indicator(index, alt_ind, (mods & MODS_ALT_MASK) != 0);
+  index += MOD_INDICATOR_WIDTH;
+  draw_indicator(index, gui_ind, (mods & MODS_GUI_MASK) != 0);
 
   // WPM
   oled_set_cursor(7, 3);
   oled_write_P(PSTR("WPM: "), false);
-  char wpm[5 + 1];
-  sprintf(wpm, "%d ", get_current_wpm());
+  char wpm[3 + 1];
+  uint8toa(get_current_wpm(), wpm);
   oled_write(wpm, false);
+  oled_write_char(' ', false);
 
   // Matrix display
 #define MATRIX_DISPLAY_X 0
