@@ -56,7 +56,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define MODS_ALT_MASK   (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 #define MODS_GUI_MASK   (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
+#include <string.h>
+
 #include "wpm.h"
+#include "keycode_config.h"
 
 #define MOD_INDICATOR_WIDTH 7
 
@@ -126,18 +129,26 @@ void oled_task_user(void) {
   oled_write_P(PSTR("Layer: "), false);
 
   uint8_t layer = get_highest_layer(layer_state);
-  char layer_name[3 + 1];
+  char topline[20 + 1];
   switch (layer) {
   case 0:
-    oled_write_ln_P(PSTR("Default"), false);
+    strcpy_P(topline, PSTR("Default"));
     break;
   case 1:
-    oled_write_ln_P(PSTR("Misc"), false);
+    strcpy_P(topline, PSTR("Misc"));
     break;
   default:
-    uint8toa(layer, layer_name);
-    oled_write_ln(layer_name, false);
+    uint8toa(layer, topline);
     break;
+  }
+  oled_write(topline, false);
+  for (uint8_t i = strlen(topline); i < 10; ++i) {
+    oled_write_char(' ', false);
+  }
+  if (keymap_config.swap_lalt_lgui) {
+    oled_write_ln_P(PSTR("Mac"), false);
+  } else {
+    oled_write_ln_P(PSTR("PC"), false);
   }
 
   // Keyboard LED status
@@ -145,6 +156,7 @@ void oled_task_user(void) {
   oled_write_P(led_state.caps_lock   ? PSTR("CAP ") : PSTR("    "), false);
   oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
   oled_write_P(led_state.num_lock    ? PSTR("NUM ") : PSTR("    "), false);
+  oled_write_P(keymap_config.swap_control_capslock ? PSTR("SWP ") : PSTR("    "), false); 
 
   // Modifier status
   uint8_t mods = get_mods();
