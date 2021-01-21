@@ -1,4 +1,4 @@
-VIA_ENABLE = yes
+VIA_ENABLE = no
 LTO_ENABLE = yes
 OLED_DRIVER_ENABLE = yes
 WPM_ENABLE = yes
