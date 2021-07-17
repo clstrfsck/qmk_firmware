@@ -1,7 +1,4 @@
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
-
-#include "config_common.h"
+#pragma once
 
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PREONIC_SOUND)
@@ -61,5 +58,3 @@
 
 // Unicode
 #define UNICODE_SELECTED_MODES UC_MAC, UC_LNX, UC_WINC
-
-#endif

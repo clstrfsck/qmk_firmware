@@ -14,10 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
-#include "preonic.h"
+#include QMK_KEYBOARD_H
+#include "muse.h"
 #include "mousekey.h"
-#include "action_layer.h"
 
 extern keymap_config_t keymap_config;
 
@@ -48,6 +47,10 @@ enum planck_keycodes {
 
 // Layer change
 #define MMOUSE      MO(_MOUSE)              // Momentary use of _MOUSE layer
+
+// Shorter names
+#define RGB_FWD RGB_MODE_FORWARD
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -192,9 +195,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_preonic_grid( \
    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, DVORAK,  XXXXXXX, \
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, \
-   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MU_ON,   MU_OFF,  MU_MOD,  XXXXXXX, \
+   RGB_TOG, RGB_FWD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, XXXXXXX, XXXXXXX, QWERTY,  COLEMAK, DVORAK,  XXXXXXX, \
+   VLK_TOG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, \
+   KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MU_ON,   MU_OFF,  MU_MOD,  XXXXXXX, \
    RESET,   XXXXXXX, _______, _______, _______, _______, _______, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN   \
 )
 
@@ -215,6 +218,7 @@ uint32_t layer_state_set_kb(uint32_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  
   switch (keycode) {
   case QWERTY:
     if (record->event.pressed) {
