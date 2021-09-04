@@ -1,3 +1,4 @@
 SRC += muse.c
 
 VELOCIKEY_ENABLE = yes
+BOOTMAGIC_ENABLE = lite
