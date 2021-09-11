@@ -10,4 +10,4 @@ LEADER_ENABLE = no         # Leader key chording
 MIDI_ENABLE = yes          # MIDI support
 UNICODE_ENABLE = no        # Unicode
 
-LINK_TIME_OPTIMIZATION_ENABLE = yes
+LTO_ENABLE = yes
