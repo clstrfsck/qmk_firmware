@@ -20,8 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "whitefox.h"
 
 // Fillers to make layering more clear
-#define _______ KC_TRNS
-#define ___T___ KC_TRNS
 #define XXXXXXX KC_NO
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
