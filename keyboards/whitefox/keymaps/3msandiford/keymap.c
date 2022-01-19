@@ -19,8 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "whitefox.h"
 
-#include "platqmk.h"
-#include "platform.h"
+#include "thrdqmk.h"
 
 // Fillers to make layering more clear
 #define XXXXXXX KC_NO
@@ -61,17 +60,22 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  bool result = process_game_key(keycode, record);
+  bool result = qmk_process_input(keycode, record);
   if (result && record->event.pressed) {
     switch (keycode) {
     case START:
       layer_clear();
-      start_game();
+      qmk_start_game();
       return false;
     }
   }
   return result;
 }
+
+void matrix_scan_user(void) {
+  qmk_process_output();
+}
+
 
 void keyboard_post_init_user(void) {
   debug_enable=true;
