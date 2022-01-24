@@ -25,8 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define XXXXXXX KC_NO
 
 enum wf_keycodes {
-  START = SAFE_RANGE,
-  STOP
+  GSTART = SAFE_RANGE
 };
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -54,7 +53,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,_______,KC_MUTE, \
     _______,    AG_NORM,AG_SWAP,CL_NORM,CL_SWAP,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK,KC_PAUS,_______ ,   _______, \
     _______,      BL_TOGG,BL_INC, BL_DEC, BL_BRTG,_______,_______,_______,_______,_______,_______,_______,_______,RESET,    KC_VOLU, \
-    _______,  _______,START,  _______,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,      KC_PGUP,KC_VOLD, \
+    _______,  _______,GSTART, _______,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,      KC_PGUP,KC_VOLD, \
     _______,  _______,  _______,  _______,                                          _______,_______,_______,KC_HOME,KC_PGDN,KC_END   \
     )
 };
@@ -63,7 +62,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   bool result = qmk_process_input(keycode, record);
   if (result && record->event.pressed) {
     switch (keycode) {
-    case START:
+    case GSTART:
       layer_clear();
       qmk_start_game();
       return false;
