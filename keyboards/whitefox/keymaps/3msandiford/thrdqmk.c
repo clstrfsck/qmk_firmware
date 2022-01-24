@@ -6,10 +6,10 @@
 static uint8_t input_data[INPUT_DATA_SIZE + 1];
 static uint16_t input_index = 0;
 
-static uint8_t output_data[OUTPUT_BUFFER_SIZE];
 
 // FIXME - should disable key processing until game ready for input.
 // The re-enabling when input is required is not implemented yet.
+// Kind of works anyway as qmk_process_output blocks the QMK thread.
 static bool ready_for_input = true;
 
 static const char keycode_to_ascii_lut[58] = {
@@ -52,6 +52,7 @@ static bool add_input(char ch) {
 }
 
 
+// FIXME - shift keys not yet supported/working
 bool qmk_process_input(uint16_t keycode, keyrecord_t *record) {
   bool result = true;
   lock_game_mutex();
@@ -93,18 +94,14 @@ bool qmk_process_input(uint16_t keycode, keyrecord_t *record) {
 }
 
 void qmk_process_output(void) {
-  size_t n;
-  do {
-    n = chPipeReadTimeout(&qmk_output_pipe, output_data, sizeof(output_data), TIME_IMMEDIATE);
-    for (size_t i = 0; i < n; ++i) {
-      uint8_t ch = output_data[i];
-      if (ch == 0) {
-        ready_for_input = true;
-      } else {
-        send_char(output_data[i]);
-      }
+  uint8_t ch;
+  while (0 != chPipeReadTimeout(&qmk_output_pipe, &ch, sizeof(ch), TIME_IMMEDIATE)) {
+    if (ch == 0) {
+      ready_for_input = true;
+    } else {
+      send_char(ch);
     }
-  } while (n > 0);
+  }
 }
 
 void qmk_start_game(void) {

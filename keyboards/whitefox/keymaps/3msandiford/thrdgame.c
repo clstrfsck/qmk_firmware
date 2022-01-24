@@ -3,9 +3,9 @@
 
 
 // Shared pipes
-uint8_t qmk_input_buffer[INPUT_BUFFER_SIZE];
+static uint8_t qmk_input_buffer[INPUT_BUFFER_SIZE];
 PIPE_DECL(qmk_input_pipe, qmk_input_buffer, INPUT_BUFFER_SIZE);
-uint8_t qmk_output_buffer[OUTPUT_BUFFER_SIZE];
+static uint8_t qmk_output_buffer[OUTPUT_BUFFER_SIZE];
 PIPE_DECL(qmk_output_pipe, qmk_output_buffer, OUTPUT_BUFFER_SIZE);
 
 
