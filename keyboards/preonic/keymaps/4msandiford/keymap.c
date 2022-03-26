@@ -20,8 +20,6 @@
 #include "mousekey.h"
 
 
-extern keymap_config_t keymap_config;
-
 enum planck_layers {
   _QWERTY,
   _COLEMAK,
