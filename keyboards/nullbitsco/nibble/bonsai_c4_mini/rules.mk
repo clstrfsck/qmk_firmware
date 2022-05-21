@@ -8,23 +8,29 @@ BOOTLOADER = stm32-dfu
 # Build Options
 #   change yes to no to disable
 #
-BOOTMAGIC_ENABLE       = yes     # Enable Bootmagic Lite
-MOUSEKEY_ENABLE        = no      # Mouse keys
-EXTRAKEY_ENABLE        = no      # Audio control and System control
-CONSOLE_ENABLE         = yes     # Console for debug
-COMMAND_ENABLE         = no      # Commands for debug and configuration
-NKRO_ENABLE            = yes     # Enable N-Key Rollover
-BACKLIGHT_ENABLE       = no      # Enable keyboard backlight functionality
-AUDIO_ENABLE           = no      # Audio output
-ENCODER_ENABLE         = yes     # Use rotary encoder
-CUSTOM_MATRIX          = lite    # Lite custom matrix
+BOOTMAGIC_ENABLE = yes     # Enable Bootmagic Lite
+MOUSEKEY_ENABLE  = no      # Mouse keys
+EXTRAKEY_ENABLE  = no      # Audio control and System control
+CONSOLE_ENABLE   = no      # Console for debug
+COMMAND_ENABLE   = no      # Commands for debug and configuration
+NKRO_ENABLE      = yes     # Enable N-Key Rollover
+AUDIO_ENABLE     = no      # Audio output
+ENCODER_ENABLE   = yes     # Use rotary encoder
+CUSTOM_MATRIX    = lite    # Lite custom matrix
 
-BACKLIGHT_ENABLE       = no      # Enable keyboard backlight functionality
-BACKLIGHT_DRIVER       = pwm
+BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality
+BACKLIGHT_DRIVER = pwm
 
-RGBLIGHT_ENABLE        = yes     # Enable keyboard RGB underglow
-RGBLIGHT_DRIVER        = WS2812
-WS2812_DRIVER          = pwm
+# PWM setup on B10 is in config.h for Bonsai C4
+RGBLIGHT_ENABLE  = yes     # Enable keyboard RGB underglow
+RGBLIGHT_DRIVER  = WS2812
+WS2812_DRIVER    = pwm
+
+# Use Bonsai serial FRAM for persistent storage
+EEPROM_DRIVER    = spi
+
+# Prefer no LTO for Chibios
+LTO_ENABLE       = no
 
 # Project specific files
 SRC += matrix.c nibble.c
