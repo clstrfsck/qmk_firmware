@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  _______, MMV_UL,  KC_MS_U, MMV_UR,  KC_WH_U, KC_PSCR, KC_SLCK, KC_PAUS },
   {RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, KC_MS_L, KC_BTN1, KC_MS_R, KC_WH_D, KC_BTN2, KC_BTN3, KC_INS  },
   {RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, MMV_DL,  KC_MS_D, MMV_DR,  _______, _______, KC_PGUP, _______ },
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, RESET,   _______, _______, KC_HOME, KC_PGDN, KC_END  }
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, QK_BOOT, _______, _______, KC_HOME, KC_PGDN, KC_END  }
 }
 
 };

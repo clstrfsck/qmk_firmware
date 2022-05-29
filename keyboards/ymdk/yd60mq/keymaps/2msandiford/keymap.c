@@ -29,7 +29,6 @@ enum m2_keycodes {
 };
 
 // Fillers to make layering more clear
-#define _______ KC_TRNS
 #define ___T___ KC_TRNS
 #define XXXXXXX KC_NO
 
@@ -67,14 +66,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,  KC_LGUI,  KC_LALT,  XXXXXXX,KC_SPC,                           XXXXXXX,KC_RALT,LAYER1 ,KC_LEFT,KC_DOWN,KC_RGHT   \
     ),
 [_LAYER0] = LAYOUT( \
-    RESET,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,KC_MUTE,  \
+    QK_BOOT,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,KC_MUTE,  \
     _______,    AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK,KC_PAUS,KC_VOLU,      \
     _______,      BL_TOGG,BL_INC ,BL_DEC ,BL_BRTG,_______,_______,_______,_______,_______,_______,KC_INS, _______,KC_VOLD,    \
     _______,  _______,_______,_______,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,RS_PGUP,_______,\
     _______,  _______,  _______,  _______,_______,                          _______,_______,_______,KC_HOME,KC_PGDN,KC_END    \
     ),
 [_LAYER1] = LAYOUT( \
-    RESET,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,KC_MUTE,  \
+    QK_BOOT,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, _______,KC_MUTE,  \
     _______,    AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK,KC_PAUS,KC_VOLU,      \
     _______,      RGB_TOG,RGB_MFW,RGB_MRV,RGB_SPI,RGB_SPD,_______,_______,_______,_______,_______,KC_INS, _______,KC_VOLD,    \
     _______,  _______,RGB_HUI,RGB_HUD,RGB_SAI,RGB_SAD,RGB_VAI,RGB_VAD,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,RS_PGUP,_______,\

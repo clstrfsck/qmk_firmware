@@ -225,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {RGB_TOG, RGB_MOD, BL_TOGG, BL_STEP, BR_TOGG, BR_INC,  BR_DEC,  XXXXXXX, QWERTY,  COLEMAK, DVORAK,  PLOVER,  _______, _______, _______ },
   {RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______, _______, _______ },
   {RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW,RGB_M_SN,RGB_M_K, RGB_M_X, RGB_M_G, MU_ON,   MU_OFF,  MU_MOD,  XXXXXXX, _______, _______, _______ },
-  {RESET,   _______, _______, XXXXXXX, _______, _______, _______, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN,  _______, _______, _______ }
+  {QK_BOOT, _______, _______, XXXXXXX, _______, _______, _______, _______, MI_ON,   MI_OFF,  MUV_DE,  MUV_IN,  _______, _______, _______ }
 }
 
 };

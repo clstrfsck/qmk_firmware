@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     AG_NORM,AG_SWAP,BL_TOGG,BL_STEP,BR_TOGG,BR_INC, BR_DEC, XXXXXXX,XXXXXXX,XXXXXXX,KC_INS, KC_DEL,
     KC_CAPS,  XXXXXXX,KC_SLCK,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
     _______,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-    _______,_______,_______,_______,  _______,      _______,      _______,  XXXXXXX,XXXXXXX,RESET
+    _______,_______,_______,_______,  _______,      _______,      _______,  XXXXXXX,XXXXXXX,QK_BOOT
   )
 };
 

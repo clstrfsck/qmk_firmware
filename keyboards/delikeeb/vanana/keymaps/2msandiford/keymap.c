@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_TOG,RGB_FWD,RGB_HUI,RGB_SAI,RGB_VAI,RGB_SPI,              XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
     VLK_TOG,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   KC_DEL,    XXXXXXX,XXXXXXX,AU_ON,  AU_OFF, AG_NORM,AG_SWAP,
     KC_LSFT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   KC_DEL,    XXXXXXX,XXXXXXX,MU_ON,  MU_OFF, MU_MOD, XXXXXXX,
-            RESET,  XXXXXXX,_______,_______,_______,              _______,MI_ON,  MI_OFF, MUV_DE, MUV_IN
+            QK_BOOT,XXXXXXX,_______,_______,_______,              _______,MI_ON,  MI_OFF, MUV_DE, MUV_IN
 )
 };
 
@@ -122,7 +122,7 @@ uint32_t layer_state_set_kb(uint32_t state) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
-  case RESET:
+  case QK_BOOT:
     if (record->event.pressed) {
 #ifdef AUDIO_ENABLE
       stop_all_notes();

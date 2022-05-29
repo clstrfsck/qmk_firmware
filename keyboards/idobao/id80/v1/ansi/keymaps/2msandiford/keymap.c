@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL,  KC_LGUI,  KC_LALT,                      KC_SPC,                       KC_RALT,    MO(1),        KC_LEFT,KC_DOWN,KC_RGHT
   ),
   [1] = LAYOUT(
-    RESET,    _______,_______,_______,_______,  _______,_______,_______,_______,  AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,  _______,  _______,
+    QK_BOOT,  _______,_______,_______,_______,  _______,_______,_______,_______,  AG_NORM,AG_SWAP,CC_NORM,CC_SWAP,  _______,  _______,
     _______,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, KC_MUTE,          KC_HOME,
     _______,    RGB_TOG,_______,RGB_MOD,RGB_HUI,RGB_HUD,RGB_SAI,RGB_SAD,RGB_VAI,RGB_VAD,KC_PSCR,KC_SLCK,KC_PAUS,KC_VOLU,      KC_END,
     _______,      _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,KC_VOLD,

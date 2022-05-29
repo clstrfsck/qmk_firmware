@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |---------------------------------------------------------------------------------------------------------------------------------------|
  * |   Tab   | PScr  | SLock | Pause |   F   |  App  |   H   |   J   |   K   |   L   |   ;   |    Enter    | MS LF | MS B1 | MS RT | MS B2 |
  * |---------------------------------------------------------------------------------------------------------------------------------------|
- * |    Shift    | RESET |Mac/Win|   C   |   V   |   B   |   N   |   M   | MPrev | MNext | MPlay |  Shift  | MS DL | MS DN | MS DR | MS B3 |
+ * |    Shift    | BOOT  |Mac/Win|   C   |   V   |   B   |   N   |   M   | MPrev | MNext | MPlay |  Shift  | MS DL | MS DN | MS DR | MS B3 |
  * |---------------------------------------------------------------------------------------------------------------------------------------|
  * |   Ctl   |   Alt   |   GUI   |       L3/Enter      |     L2/Space    |   GUI   |  Alt  |  Fn   |  Ctl  | MS B1 | MS B2 | MS B3 |  Ent  |
  * `---------------------------------------------------------------------------------------------------------------------------------------'
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_L4] = LAYOUT(
     KC_ESC, KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12, MMV_UL, MMV_UP, MMV_UR, MMV_B1, \
     _______,  KC_PSCR,KC_SLCK,KC_PAUS,_______,KC_APP, _______,_______,_______,_______,_______,_______,      MMV_LF, MMV_B1, MMV_RT, MMV_B2, \
-    _______,      RESET,  AG_TOGG,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,  MMV_DL, MMV_DN, MMV_DR, MMV_B3, \
+    _______,      QK_BOOT,AG_TOGG,_______,_______,_______,_______,_______,KC_MPRV,KC_MNXT,KC_MPLY,_______,  MMV_DL, MMV_DN, MMV_DR, MMV_B3, \
     _______,  _______,  _______,  _______,   _______,   _______,          _______,  _______,_______,_______,MMV_B1, MMV_B2, MMV_B3, _______
 )
 };
